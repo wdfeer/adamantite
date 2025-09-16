@@ -24,8 +24,6 @@ private fun Block.register(name: String, shouldRegisterItem: Boolean = true): Bl
 }
 
 fun initBlocks() {
-    deepslateAdamantiteOre
-
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register { content: FabricItemGroupEntries ->
         content.add(deepslateAdamantiteOre)
     }
