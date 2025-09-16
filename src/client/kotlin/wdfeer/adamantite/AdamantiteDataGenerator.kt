@@ -5,16 +5,22 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider
 import net.minecraft.block.Block
 import net.minecraft.data.client.BlockStateModelGenerator
 import net.minecraft.data.client.ItemModelGenerator
 import net.minecraft.data.client.Models
+import net.minecraft.data.server.recipe.RecipeJsonProvider
+import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
 import net.minecraft.item.Item
+import net.minecraft.item.Items
+import net.minecraft.recipe.book.RecipeCategory
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.registry.RegistryWrapper
 import net.minecraft.registry.tag.BlockTags
 import net.minecraft.registry.tag.ItemTags
+import java.util.function.Consumer
 
 object AdamantiteDataGenerator : DataGeneratorEntrypoint {
     override fun onInitializeDataGenerator(generator: FabricDataGenerator) {
@@ -45,6 +51,105 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                     generator.register(adamantiteChestplate, Models.GENERATED)
                     generator.register(adamantiteLeggings, Models.GENERATED)
                     generator.register(adamantiteBoots, Models.GENERATED)
+                }
+            }
+        }
+
+        pack.addProvider { dataOutput, _ ->
+            object : FabricRecipeProvider(dataOutput) {
+                override fun generate(exporter: Consumer<RecipeJsonProvider>) {
+                    offerSmelting(
+                        exporter,
+                        listOf(deepslateAdamantiteOre),
+                        RecipeCategory.MISC,
+                        adamantiteIngot,
+                        1f,
+                        300,
+                        ""
+                    )
+
+                    ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, adamantiteShovel)
+                        .pattern(" A ")
+                        .pattern(" S ")
+                        .pattern(" S ")
+                        .input('A', adamantiteIngot)
+                        .input('S', Items.STICK)
+                        .criterion(hasItem(adamantiteIngot), conditionsFromItem(adamantiteIngot))
+                        .offerTo(exporter)
+                    ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, adamantitePickaxe)
+                        .pattern("AAA")
+                        .pattern(" S ")
+                        .pattern(" S ")
+                        .input('A', adamantiteIngot)
+                        .input('S', Items.STICK)
+                        .criterion(hasItem(adamantiteIngot), conditionsFromItem(adamantiteIngot))
+                        .offerTo(exporter)
+                    ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, adamantiteAxe)
+                        .pattern("AA ")
+                        .pattern("AS ")
+                        .pattern(" S ")
+                        .input('A', adamantiteIngot)
+                        .input('S', Items.STICK)
+                        .criterion(hasItem(adamantiteIngot), conditionsFromItem(adamantiteIngot))
+                        .offerTo(exporter, Adamantite.id("adamantite_axe_left"))
+                    ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, adamantiteAxe)
+                        .pattern(" AA")
+                        .pattern(" SA")
+                        .pattern(" S ")
+                        .input('A', adamantiteIngot)
+                        .input('S', Items.STICK)
+                        .criterion(hasItem(adamantiteIngot), conditionsFromItem(adamantiteIngot))
+                        .offerTo(exporter, Adamantite.id("adamantite_axe_right"))
+                    ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, adamantiteHoe)
+                        .pattern("AA ")
+                        .pattern(" S ")
+                        .pattern(" S ")
+                        .input('A', adamantiteIngot)
+                        .input('S', Items.STICK)
+                        .criterion(hasItem(adamantiteIngot), conditionsFromItem(adamantiteIngot))
+                        .offerTo(exporter, Adamantite.id("adamantite_hoe_left"))
+                    ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, adamantiteHoe)
+                        .pattern(" AA")
+                        .pattern(" S ")
+                        .pattern(" S ")
+                        .input('A', adamantiteIngot)
+                        .input('S', Items.STICK)
+                        .criterion(hasItem(adamantiteIngot), conditionsFromItem(adamantiteIngot))
+                        .offerTo(exporter, Adamantite.id("adamantite_hoe_right"))
+                    ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, adamantiteSword)
+                        .pattern(" A ")
+                        .pattern(" A ")
+                        .pattern(" S ")
+                        .input('A', adamantiteIngot)
+                        .input('S', Items.STICK)
+                        .criterion(hasItem(adamantiteIngot), conditionsFromItem(adamantiteIngot))
+                        .offerTo(exporter)
+                    ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, adamantiteHelmet)
+                        .pattern("AAA")
+                        .pattern("A A")
+                        .input('A', adamantiteIngot)
+                        .criterion(hasItem(adamantiteIngot), conditionsFromItem(adamantiteIngot))
+                        .offerTo(exporter)
+                    ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, adamantiteChestplate)
+                        .pattern("A A")
+                        .pattern("AAA")
+                        .pattern("AAA")
+                        .input('A', adamantiteIngot)
+                        .criterion(hasItem(adamantiteIngot), conditionsFromItem(adamantiteIngot))
+                        .offerTo(exporter)
+                    ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, adamantiteLeggings)
+                        .pattern("AAA")
+                        .pattern("A A")
+                        .pattern("A A")
+                        .input('A', adamantiteIngot)
+                        .criterion(hasItem(adamantiteIngot), conditionsFromItem(adamantiteIngot))
+                        .offerTo(exporter)
+                    ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, adamantiteBoots)
+                        .pattern("A A")
+                        .pattern("A A")
+                        .input('A', adamantiteIngot)
+                        .criterion(hasItem(adamantiteIngot), conditionsFromItem(adamantiteIngot))
+                        .offerTo(exporter)
                 }
             }
         }
