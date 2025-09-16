@@ -47,10 +47,10 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                     generator.register(adamantitePickaxe, Models.HANDHELD)
                     generator.register(adamantiteAxe, Models.HANDHELD)
                     generator.register(adamantiteHoe, Models.HANDHELD)
-                    generator.register(adamantiteHelmet, Models.GENERATED)
-                    generator.register(adamantiteChestplate, Models.GENERATED)
-                    generator.register(adamantiteLeggings, Models.GENERATED)
-                    generator.register(adamantiteBoots, Models.GENERATED)
+                    generator.registerArmor(adamantiteHelmet)
+                    generator.registerArmor(adamantiteChestplate)
+                    generator.registerArmor(adamantiteLeggings)
+                    generator.registerArmor(adamantiteBoots)
                 }
             }
         }
@@ -182,6 +182,12 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                     getTagBuilder(ItemTags.PICKAXES).add(Adamantite.id("adamantite_pickaxe"))
                     getTagBuilder(ItemTags.AXES).add(Adamantite.id("adamantite_axe"))
                     getTagBuilder(ItemTags.HOES).add(Adamantite.id("adamantite_hoe"))
+
+                    // TODO: make item models datagen for trimmed armor
+                    getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("adamantite_helmet"))
+                    getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("adamantite_chestplate"))
+                    getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("adamantite_leggings"))
+                    getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("adamantite_boots"))
                 }
             }
         }

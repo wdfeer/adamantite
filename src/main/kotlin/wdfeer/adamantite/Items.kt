@@ -53,7 +53,7 @@ val adamantiteLeggings =
 val adamantiteBoots =
     ArmorItem(adamantiteArmorMaterial, ArmorItem.Type.BOOTS, FabricItemSettings()).register("adamantite_boots")
 
-private fun Item.register(name: String): Item {
+private fun <T : Item> T.register(name: String): T {
     val id = Adamantite.id(name)
     return Registry.register(Registries.ITEM, id, this)
 }
