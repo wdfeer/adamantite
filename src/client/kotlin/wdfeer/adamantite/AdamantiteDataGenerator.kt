@@ -67,6 +67,15 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                         300,
                         ""
                     )
+                    offerBlasting(
+                        exporter,
+                        listOf(deepslateAdamantiteOre),
+                        RecipeCategory.MISC,
+                        adamantiteIngot,
+                        1f,
+                        300,
+                        ""
+                    )
 
                     ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, adamantiteShovel)
                         .pattern(" A ")
