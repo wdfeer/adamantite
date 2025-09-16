@@ -1,15 +1,17 @@
 package wdfeer.adamantite
 
 import net.fabricmc.api.ModInitializer
+import net.minecraft.util.Identifier
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 object Adamantite : ModInitializer {
-    private val logger = LoggerFactory.getLogger("adamantite")
+    val logger: Logger = LoggerFactory.getLogger("adamantite")
 
-	override fun onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
-		logger.info("Hello Fabric world!")
-	}
+    fun id(name: String): Identifier = Identifier("adamantite", name)
+
+    override fun onInitialize() {
+        initBlocks()
+        logger.info("Adamantite initialized!")
+    }
 }
