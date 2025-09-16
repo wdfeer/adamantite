@@ -36,6 +36,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
 
                 override fun generateItemModels(generator: ItemModelGenerator) {
                     generator.register(adamantiteSword, Models.HANDHELD)
+                    generator.register(adamantitePickaxe, Models.HANDHELD)
                 }
             }
         }
@@ -55,6 +56,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                 override fun configure(lookup: RegistryWrapper.WrapperLookup?) {
                     // TODO: extract the ids into constants or sth
                     getTagBuilder(ItemTags.SWORDS).add(Adamantite.id("adamantite_sword"))
+                    getTagBuilder(ItemTags.PICKAXES).add(Adamantite.id("adamantite_pickaxe"))
                 }
             }
         }
@@ -64,6 +66,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                 override fun generateTranslations(buffer: TranslationBuilder) {
                     buffer.add(deepslateAdamantiteOre, "Deepslate Adamantite Ore")
                     buffer.add(adamantiteSword, "Adamantite Sword")
+                    buffer.add(adamantitePickaxe, "Adamantite Pickaxe")
                 }
             }
         }
