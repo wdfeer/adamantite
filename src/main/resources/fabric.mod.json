@@ -1,0 +1,53 @@
+{
+	"schemaVersion": 1,
+	"id": "adamantite",
+	"version": "${version}",
+	"name": "Adamantite",
+	"description": "Adamantite ore and tools. Generates after defeating the Ender Dragon.",
+	"authors": [
+		"wdfeer"
+	],
+	"contact": {
+		"sources": "https://github.com/wdfeer/adamantite"
+	},
+	"license": "GPL-3.0",
+	"icon": "assets/adamantite/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			{
+				"value": "wdfeer.adamantite.Adamantite",
+				"adapter": "kotlin"
+			}
+		],
+		"client": [
+			{
+				"value": "wdfeer.adamantite.AdamantiteClient",
+				"adapter": "kotlin"
+			}
+		],
+		"fabric-datagen": [
+			{
+				"value": "wdfeer.adamantite.AdamantiteDataGenerator",
+				"adapter": "kotlin"
+			}
+		]
+	},
+	"mixins": [
+		"adamantite.mixins.json",
+		{
+			"config": "adamantite.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.17.2",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*",
+		"fabric-language-kotlin": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
