@@ -14,13 +14,20 @@ private val adamantiteMaterial = object : ToolMaterial {
     override fun getAttackDamage(): Float = ToolMaterials.NETHERITE.attackDamage + 1
     override fun getMiningLevel(): Int = ToolMaterials.NETHERITE.miningLevel
     override fun getEnchantability(): Int = ToolMaterials.NETHERITE.enchantability
-    override fun getRepairIngredient(): Ingredient = ToolMaterials.NETHERITE.repairIngredient // TODO: use adamantite ingot
+    override fun getRepairIngredient(): Ingredient =
+        ToolMaterials.NETHERITE.repairIngredient // TODO: use adamantite ingot
 }
 
 val adamantiteSword =
     SwordItem(adamantiteMaterial, 3, -2.4f, FabricItemSettings()).register("adamantite_sword")
 val adamantitePickaxe =
     PickaxeItem(adamantiteMaterial, 1, -2.8f, FabricItemSettings()).register("adamantite_pickaxe")
+val adamantiteShovel =
+    ShovelItem(adamantiteMaterial, 1.5f, -3f, FabricItemSettings()).register("adamantite_shovel")
+val adamantiteAxe =
+    AxeItem(adamantiteMaterial, 5f, -3f, FabricItemSettings()).register("adamantite_axe")
+val adamantiteHoe =
+    HoeItem(adamantiteMaterial, -4, 0f, FabricItemSettings()).register("adamantite_hoe")
 
 private fun Item.register(name: String): Item {
     val id = Adamantite.id(name)
@@ -33,5 +40,8 @@ fun initItems() {
     }
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register { content: FabricItemGroupEntries ->
         content.add(adamantitePickaxe)
+        content.add(adamantiteShovel)
+        content.add(adamantiteAxe)
+        content.add(adamantiteHoe)
     }
 }
