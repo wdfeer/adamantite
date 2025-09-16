@@ -10,8 +10,8 @@ import net.minecraft.world.PersistentState
 import net.minecraft.world.World
 import kotlin.random.Random
 
-private const val INTERVAL = 1000
-private const val TRIES_PER_CHUNK = 10
+private const val INTERVAL = 10
+private const val TRIES_PER_CHUNK = 50
 private val HEIGHT_RANGE = -58..-18
 private const val ADAMANTITE_GENERATION_STATE_ID = "adamantite_generation"
 
@@ -30,7 +30,7 @@ private data class AdamantiteGenerationState(var generated: MutableSet<ChunkPos>
 
 fun initOreGeneration() {
     ServerTickEvents.END_SERVER_TICK.register { server ->
-        val enderDragonDead = server.getWorld(World.END)?.aliveEnderDragons?.isEmpty() ?: false
+        val enderDragonDead = server.getWorld(World.END)?.let { it.enderDragonFight?.hasPreviouslyKilled() ?: true } ?: false
         if (!enderDragonDead) return@register
 
         val world = server.overworld
@@ -65,7 +65,8 @@ fun initOreGeneration() {
             state.generated.add(it)
             var count = 0
             repeat(TRIES_PER_CHUNK) { _ ->
-                val pos = BlockPos(it.x * 16 + Random.nextInt(16), HEIGHT_RANGE.random(), it.z * 16 + Random.nextInt(16))
+                val pos =
+                    BlockPos(it.x * 16 + Random.nextInt(16), HEIGHT_RANGE.random(), it.z * 16 + Random.nextInt(16))
                 if (world.getBlockState(pos).block == Blocks.DEEPSLATE) {
                     world.setBlockState(pos, deepslateAdamantiteOre.defaultState)
                     count++
