@@ -40,6 +40,10 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                     generator.register(adamantitePickaxe, Models.HANDHELD)
                     generator.register(adamantiteAxe, Models.HANDHELD)
                     generator.register(adamantiteHoe, Models.HANDHELD)
+                    generator.register(adamantiteHelmet, Models.GENERATED)
+                    generator.register(adamantiteChestplate, Models.GENERATED)
+                    generator.register(adamantiteLeggings, Models.GENERATED)
+                    generator.register(adamantiteBoots, Models.GENERATED)
                 }
             }
         }
@@ -76,6 +80,10 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                     buffer.add(adamantitePickaxe, "Adamantite Pickaxe")
                     buffer.add(adamantiteAxe, "Adamantite Axe")
                     buffer.add(adamantiteHoe, "Adamantite Hoe")
+                    buffer.add(adamantiteHelmet, "Adamantite Helmet")
+                    buffer.add(adamantiteChestplate, "Adamantite Chestplate")
+                    buffer.add(adamantiteLeggings, "Adamantite Leggings")
+                    buffer.add(adamantiteBoots, "Adamantite Boots")
                 }
             }
         }
