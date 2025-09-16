@@ -59,16 +59,16 @@ private fun Item.register(name: String): Item {
 fun initItems() {
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register { content: FabricItemGroupEntries ->
         content.add(adamantiteSword)
+
+        content.add(adamantiteHelmet)
+        content.add(adamantiteChestplate)
+        content.add(adamantiteLeggings)
+        content.add(adamantiteBoots)
     }
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register { content: FabricItemGroupEntries ->
         content.add(adamantiteShovel)
         content.add(adamantitePickaxe)
         content.add(adamantiteAxe)
         content.add(adamantiteHoe)
-
-        content.add(adamantiteHelmet)
-        content.add(adamantiteChestplate)
-        content.add(adamantiteLeggings)
-        content.add(adamantiteBoots)
     }
 }
