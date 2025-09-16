@@ -3,6 +3,7 @@ package wdfeer.adamantite
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider
 import net.minecraft.block.Block
@@ -54,6 +55,15 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                 override fun configure(lookup: RegistryWrapper.WrapperLookup?) {
                     // TODO: extract the ids into constants or sth
                     getTagBuilder(ItemTags.SWORDS).add(Adamantite.id("adamantite_sword"))
+                }
+            }
+        }
+
+        pack.addProvider { dataOutput, _ ->
+            object : FabricLanguageProvider(dataOutput, "en_us") {
+                override fun generateTranslations(buffer: TranslationBuilder) {
+                    buffer.add(deepslateAdamantiteOre, "Deepslate Adamantite Ore")
+                    buffer.add(adamantiteSword, "Adamantite Sword")
                 }
             }
         }
