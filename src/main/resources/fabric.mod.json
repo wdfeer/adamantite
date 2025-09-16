@@ -28,7 +28,7 @@
 		],
 		"fabric-datagen": [
 			{
-				"value": "wdfeer.adamantite.AdamantiteDataGenerator",
+				"value": "wdfeer.adamantite.datagen.AdamantiteDataGenerator",
 				"adapter": "kotlin"
 			}
 		]
