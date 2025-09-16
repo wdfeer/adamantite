@@ -35,6 +35,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                 }
 
                 override fun generateItemModels(generator: ItemModelGenerator) {
+                    generator.register(adamantiteIngot, Models.GENERATED)
                     generator.register(adamantiteSword, Models.HANDHELD)
                     generator.register(adamantiteShovel, Models.HANDHELD)
                     generator.register(adamantitePickaxe, Models.HANDHELD)
@@ -75,6 +76,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
             object : FabricLanguageProvider(dataOutput, "en_us") {
                 override fun generateTranslations(buffer: TranslationBuilder) {
                     buffer.add(deepslateAdamantiteOre, "Deepslate Adamantite Ore")
+                    buffer.add(adamantiteIngot, "Adamantite Ingot")
                     buffer.add(adamantiteSword, "Adamantite Sword")
                     buffer.add(adamantiteShovel, "Adamantite Shovel")
                     buffer.add(adamantitePickaxe, "Adamantite Pickaxe")
