@@ -65,7 +65,7 @@ fun initOreGeneration() {
             state.generated.add(it)
             var count = 0
             repeat(TRIES_PER_CHUNK) { _ ->
-                val pos = BlockPos(it.x * 16 + Random.nextInt(16), HEIGHT_RANGE.random(), it.x + Random.nextInt(16))
+                val pos = BlockPos(it.x * 16 + Random.nextInt(16), HEIGHT_RANGE.random(), it.z * 16 + Random.nextInt(16))
                 if (world.getBlockState(pos).block == Blocks.DEEPSLATE) {
                     world.setBlockState(pos, deepslateAdamantiteOre.defaultState)
                     count++
