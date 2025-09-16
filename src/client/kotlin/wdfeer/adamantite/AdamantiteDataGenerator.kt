@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
 import net.minecraft.data.client.BlockStateModelGenerator
 import net.minecraft.data.client.ItemModelGenerator
+import net.minecraft.data.client.Models
 
 object AdamantiteDataGenerator : DataGeneratorEntrypoint {
     override fun onInitializeDataGenerator(generator: FabricDataGenerator) {
@@ -25,7 +26,9 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                     generator.registerSimpleCubeAll(deepslateAdamantiteOre)
                 }
 
-                override fun generateItemModels(generator: ItemModelGenerator) {}
+                override fun generateItemModels(generator: ItemModelGenerator) {
+                    generator.register(adamantiteSword, Models.HANDHELD)
+                }
             }
         }
     }

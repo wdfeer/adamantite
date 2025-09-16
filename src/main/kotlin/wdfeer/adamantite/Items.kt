@@ -18,7 +18,7 @@ private val adamantiteMaterial = object : ToolMaterial {
 }
 
 val adamantiteSword =
-    SwordItem(adamantiteMaterial, 3, -2.4f, FabricItemSettings()).register("deepslate_adamantite_ore")
+    SwordItem(adamantiteMaterial, 3, -2.4f, FabricItemSettings()).register("adamantite_sword")
 
 private fun Item.register(name: String): Item {
     val id = Adamantite.id(name)
