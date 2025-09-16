@@ -39,7 +39,7 @@ fun initOreGeneration() {
         val validPlayers = world.players.filter { it.isAlive && it.interactionManager.gameMode != GameMode.SPECTATOR }
         if (validPlayers.isEmpty()) return@register
 
-        val state = world.persistentStateManager.getOrCreate<AdamantiteGenerationState>(
+        val state = world.persistentStateManager.getOrCreate(
             ::AdamantiteGenerationState,
             { AdamantiteGenerationState(mutableSetOf()) },
             ADAMANTITE_GENERATION_STATE_ID
@@ -63,6 +63,8 @@ fun initOreGeneration() {
 
         chunksToGenerate.forEach {
             state.generated.add(it)
+            state.markDirty()
+
             var count = 0
             repeat(TRIES_PER_CHUNK) { _ ->
                 val pos =
@@ -74,8 +76,5 @@ fun initOreGeneration() {
             }
             Adamantite.logger.info("Generated $count deepslate adamantite ore blocks in the chunk ${it.x},${it.z}.")
         }
-
-        if (chunksToGenerate.any())
-            world.persistentStateManager[ADAMANTITE_GENERATION_STATE_ID] = state
     }
 }
