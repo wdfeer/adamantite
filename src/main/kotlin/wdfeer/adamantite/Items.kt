@@ -20,10 +20,10 @@ private val adamantiteMaterial = object : ToolMaterial {
 
 val adamantiteSword =
     SwordItem(adamantiteMaterial, 3, -2.4f, FabricItemSettings()).register("adamantite_sword")
-val adamantitePickaxe =
-    PickaxeItem(adamantiteMaterial, 1, -2.8f, FabricItemSettings()).register("adamantite_pickaxe")
 val adamantiteShovel =
     ShovelItem(adamantiteMaterial, 1.5f, -3f, FabricItemSettings()).register("adamantite_shovel")
+val adamantitePickaxe =
+    PickaxeItem(adamantiteMaterial, 1, -2.8f, FabricItemSettings()).register("adamantite_pickaxe")
 val adamantiteAxe =
     AxeItem(adamantiteMaterial, 5f, -3f, FabricItemSettings()).register("adamantite_axe")
 val adamantiteHoe =
@@ -39,8 +39,8 @@ fun initItems() {
         content.add(adamantiteSword)
     }
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register { content: FabricItemGroupEntries ->
-        content.add(adamantitePickaxe)
         content.add(adamantiteShovel)
+        content.add(adamantitePickaxe)
         content.add(adamantiteAxe)
         content.add(adamantiteHoe)
     }

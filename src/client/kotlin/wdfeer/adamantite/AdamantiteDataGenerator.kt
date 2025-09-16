@@ -36,8 +36,8 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
 
                 override fun generateItemModels(generator: ItemModelGenerator) {
                     generator.register(adamantiteSword, Models.HANDHELD)
-                    generator.register(adamantitePickaxe, Models.HANDHELD)
                     generator.register(adamantiteShovel, Models.HANDHELD)
+                    generator.register(adamantitePickaxe, Models.HANDHELD)
                     generator.register(adamantiteAxe, Models.HANDHELD)
                     generator.register(adamantiteHoe, Models.HANDHELD)
                 }
@@ -59,8 +59,8 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                 override fun configure(lookup: RegistryWrapper.WrapperLookup?) {
                     // TODO: extract the ids into constants or sth
                     getTagBuilder(ItemTags.SWORDS).add(Adamantite.id("adamantite_sword"))
-                    getTagBuilder(ItemTags.PICKAXES).add(Adamantite.id("adamantite_pickaxe"))
                     getTagBuilder(ItemTags.SHOVELS).add(Adamantite.id("adamantite_shovel"))
+                    getTagBuilder(ItemTags.PICKAXES).add(Adamantite.id("adamantite_pickaxe"))
                     getTagBuilder(ItemTags.AXES).add(Adamantite.id("adamantite_axe"))
                     getTagBuilder(ItemTags.HOES).add(Adamantite.id("adamantite_hoe"))
                 }
@@ -72,8 +72,8 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                 override fun generateTranslations(buffer: TranslationBuilder) {
                     buffer.add(deepslateAdamantiteOre, "Deepslate Adamantite Ore")
                     buffer.add(adamantiteSword, "Adamantite Sword")
-                    buffer.add(adamantitePickaxe, "Adamantite Pickaxe")
                     buffer.add(adamantiteShovel, "Adamantite Shovel")
+                    buffer.add(adamantitePickaxe, "Adamantite Pickaxe")
                     buffer.add(adamantiteAxe, "Adamantite Axe")
                     buffer.add(adamantiteHoe, "Adamantite Hoe")
                 }
