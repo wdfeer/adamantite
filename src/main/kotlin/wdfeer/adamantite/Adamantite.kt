@@ -13,6 +13,7 @@ object Adamantite : ModInitializer {
     override fun onInitialize() {
         initBlocks()
         initItems()
+        initOreGeneration()
         logger.info("Adamantite initialized!")
     }
 }
