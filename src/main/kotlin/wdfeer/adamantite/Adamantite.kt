@@ -14,6 +14,7 @@ object Adamantite : ModInitializer {
         initBlocks()
         initItems()
         initOreGeneration()
+        initLootTables()
         logger.info("Adamantite initialized!")
     }
 }
