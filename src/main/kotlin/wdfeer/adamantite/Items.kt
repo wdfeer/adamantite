@@ -10,6 +10,7 @@ import net.minecraft.registry.Registry
 import net.minecraft.sound.SoundEvent
 
 val adamantiteIngot = Item(FabricItemSettings()).register("adamantite_ingot")
+val adamantiteUpgradeTemplate = Item(FabricItemSettings()).register("adamantite_upgrade_template")
 
 private val adamantiteToolMaterial = object : ToolMaterial {
     override fun getDurability(): Int = ToolMaterials.NETHERITE.durability
