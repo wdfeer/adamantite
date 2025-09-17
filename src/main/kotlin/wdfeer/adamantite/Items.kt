@@ -62,6 +62,7 @@ private fun <T : Item> T.register(name: String): T {
 fun initItems() {
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register { content: FabricItemGroupEntries ->
         content.add(adamantiteIngot)
+        content.add(adamantiteUpgradeTemplate)
     }
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register { content: FabricItemGroupEntries ->
         content.add(adamantiteSword)
