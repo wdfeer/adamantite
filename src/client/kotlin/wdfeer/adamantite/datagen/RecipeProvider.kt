@@ -5,25 +5,31 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider
 import net.minecraft.data.server.recipe.RecipeJsonProvider
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
 import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder
+import net.minecraft.item.Item
+import net.minecraft.item.ItemConvertible
 import net.minecraft.item.Items
 import net.minecraft.recipe.Ingredient
 import net.minecraft.recipe.book.RecipeCategory
-import wdfeer.adamantite.Adamantite
-import wdfeer.adamantite.adamantiteAxe
-import wdfeer.adamantite.adamantiteBoots
-import wdfeer.adamantite.adamantiteChestplate
-import wdfeer.adamantite.adamantiteHelmet
-import wdfeer.adamantite.adamantiteHoe
-import wdfeer.adamantite.adamantiteIngot
-import wdfeer.adamantite.adamantiteLeggings
-import wdfeer.adamantite.adamantitePickaxe
-import wdfeer.adamantite.adamantiteShovel
-import wdfeer.adamantite.adamantiteSword
-import wdfeer.adamantite.adamantiteUpgradeTemplate
-import wdfeer.adamantite.deepslateAdamantiteOre
+import wdfeer.adamantite.*
 import java.util.function.Consumer
 
 class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOutput) {
+    private fun offerAdamantiteUpgradeRecipe(
+        exporter: Consumer<RecipeJsonProvider>,
+        input: Item,
+        category: RecipeCategory,
+        result: Item
+    ) { // idk just copied from VanillaRecipeProvider
+        SmithingTransformRecipeJsonBuilder.create(
+            Ingredient.ofItems(*arrayOf<ItemConvertible>(adamantiteUpgradeTemplate)),
+            Ingredient.ofItems(*arrayOf<ItemConvertible>(input)),
+            Ingredient.ofItems(*arrayOf<ItemConvertible>(adamantiteIngot)),
+            category,
+            result
+        ).criterion("has_adamantite_ingot", conditionsFromItem(Items.NETHERITE_INGOT))
+            .offerTo(exporter, getItemPath(result) + "_smithing")
+    }
+
     override fun generate(exporter: Consumer<RecipeJsonProvider>) {
         offerSmelting(
             exporter,
@@ -46,42 +52,14 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
 
         offerSmithingTemplateCopyingRecipe(exporter, adamantiteUpgradeTemplate, adamantiteIngot)
 
-        SmithingTransformRecipeJsonBuilder.create(
-            Ingredient.ofItems(adamantiteUpgradeTemplate), Ingredient.ofItems(Items.NETHERITE_SWORD),
-            Ingredient.ofItems(adamantiteIngot), RecipeCategory.COMBAT, adamantiteSword
-        )
-        SmithingTransformRecipeJsonBuilder.create(
-            Ingredient.ofItems(adamantiteUpgradeTemplate), Ingredient.ofItems(Items.NETHERITE_HELMET),
-            Ingredient.ofItems(adamantiteIngot), RecipeCategory.COMBAT, adamantiteHelmet
-        )
-        SmithingTransformRecipeJsonBuilder.create(
-            Ingredient.ofItems(adamantiteUpgradeTemplate), Ingredient.ofItems(Items.NETHERITE_CHESTPLATE),
-            Ingredient.ofItems(adamantiteIngot), RecipeCategory.COMBAT, adamantiteChestplate
-        )
-        SmithingTransformRecipeJsonBuilder.create(
-            Ingredient.ofItems(adamantiteUpgradeTemplate), Ingredient.ofItems(Items.NETHERITE_LEGGINGS),
-            Ingredient.ofItems(adamantiteIngot), RecipeCategory.COMBAT, adamantiteLeggings
-        )
-        SmithingTransformRecipeJsonBuilder.create(
-            Ingredient.ofItems(adamantiteUpgradeTemplate), Ingredient.ofItems(Items.NETHERITE_BOOTS),
-            Ingredient.ofItems(adamantiteIngot), RecipeCategory.COMBAT, adamantiteBoots
-        )
-        SmithingTransformRecipeJsonBuilder.create(
-            Ingredient.ofItems(adamantiteUpgradeTemplate), Ingredient.ofItems(Items.NETHERITE_SHOVEL),
-            Ingredient.ofItems(adamantiteIngot), RecipeCategory.TOOLS, adamantiteShovel
-        )
-        SmithingTransformRecipeJsonBuilder.create(
-            Ingredient.ofItems(adamantiteUpgradeTemplate), Ingredient.ofItems(Items.NETHERITE_PICKAXE),
-            Ingredient.ofItems(adamantiteIngot), RecipeCategory.TOOLS, adamantitePickaxe
-        )
-        SmithingTransformRecipeJsonBuilder.create(
-            Ingredient.ofItems(adamantiteUpgradeTemplate), Ingredient.ofItems(Items.NETHERITE_AXE),
-            Ingredient.ofItems(adamantiteIngot), RecipeCategory.TOOLS, adamantiteAxe
-        )
-        SmithingTransformRecipeJsonBuilder.create(
-            Ingredient.ofItems(adamantiteUpgradeTemplate), Ingredient.ofItems(Items.NETHERITE_HOE),
-            Ingredient.ofItems(adamantiteIngot), RecipeCategory.TOOLS, adamantiteHoe
-        )
+        offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_HELMET, RecipeCategory.COMBAT, adamantiteHelmet)
+        offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_CHESTPLATE, RecipeCategory.COMBAT, adamantiteChestplate)
+        offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_LEGGINGS, RecipeCategory.COMBAT, adamantiteLeggings)
+        offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_BOOTS, RecipeCategory.COMBAT, adamantiteBoots)
+        offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_SHOVEL, RecipeCategory.TOOLS, adamantiteShovel)
+        offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_PICKAXE, RecipeCategory.TOOLS, adamantitePickaxe)
+        offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_AXE, RecipeCategory.TOOLS, adamantiteAxe)
+        offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_HOE, RecipeCategory.TOOLS, adamantiteHoe)
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, adamantiteShovel)
             .pattern(" A ")
