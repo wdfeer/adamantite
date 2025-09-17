@@ -20,12 +20,6 @@
 				"adapter": "kotlin"
 			}
 		],
-		"client": [
-			{
-				"value": "wdfeer.adamantite.AdamantiteClient",
-				"adapter": "kotlin"
-			}
-		],
 		"fabric-datagen": [
 			{
 				"value": "wdfeer.adamantite.datagen.AdamantiteDataGenerator",
@@ -33,13 +27,6 @@
 			}
 		]
 	},
-	"mixins": [
-		"adamantite.mixins.json",
-		{
-			"config": "adamantite.client.mixins.json",
-			"environment": "client"
-		}
-	],
 	"depends": {
 		"fabricloader": ">=0.17.2",
 		"minecraft": "~1.20.1",
