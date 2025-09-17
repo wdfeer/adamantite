@@ -18,7 +18,7 @@ private val adamantiteToolMaterial = object : ToolMaterial {
     override fun getMiningLevel(): Int = ToolMaterials.NETHERITE.miningLevel
     override fun getEnchantability(): Int = ToolMaterials.NETHERITE.enchantability
     override fun getRepairIngredient(): Ingredient =
-        ToolMaterials.NETHERITE.repairIngredient // TODO: use adamantite ingot
+        Ingredient.ofItems(adamantiteIngot)
 }
 
 val adamantiteSword =
@@ -41,7 +41,7 @@ private val adamantiteArmorMaterial = object : ArmorMaterial {
     override fun getToughness(): Float = ArmorMaterials.NETHERITE.toughness + 1
     override fun getKnockbackResistance(): Float = ArmorMaterials.NETHERITE.knockbackResistance
     override fun getRepairIngredient(): Ingredient =
-        ArmorMaterials.NETHERITE.repairIngredient // TODO: use adamantite ingot
+        Ingredient.ofItems(adamantiteIngot)
 }
 
 val adamantiteHelmet =
