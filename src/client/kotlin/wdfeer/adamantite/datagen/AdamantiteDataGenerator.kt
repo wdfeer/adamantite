@@ -26,6 +26,7 @@ import wdfeer.adamantite.adamantiteLeggings
 import wdfeer.adamantite.adamantitePickaxe
 import wdfeer.adamantite.adamantiteShovel
 import wdfeer.adamantite.adamantiteSword
+import wdfeer.adamantite.adamantiteUpgradeTemplate
 import wdfeer.adamantite.deepslateAdamantiteOre
 
 object AdamantiteDataGenerator : DataGeneratorEntrypoint {
@@ -48,6 +49,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
 
                 override fun generateItemModels(generator: ItemModelGenerator) {
                     generator.register(adamantiteIngot, Models.GENERATED)
+                    generator.register(adamantiteUpgradeTemplate, Models.GENERATED)
                     generator.register(adamantiteSword, Models.HANDHELD)
                     generator.register(adamantiteShovel, Models.HANDHELD)
                     generator.register(adamantitePickaxe, Models.HANDHELD)
@@ -66,7 +68,6 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
         pack.addProvider { dataOutput, registriesFuture ->
             object : FabricTagProvider<Block>(dataOutput, RegistryKeys.BLOCK, registriesFuture) {
                 override fun configure(lookup: RegistryWrapper.WrapperLookup?) {
-                    // TODO: extract the ids into constants or sth
                     getTagBuilder(BlockTags.PICKAXE_MINEABLE).add(Adamantite.id("deepslate_adamantite_ore"))
                     getTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL).add(Adamantite.id("deepslate_adamantite_ore"))
                 }
@@ -76,7 +77,6 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
         pack.addProvider { dataOutput, registriesFuture ->
             object : FabricTagProvider<Item>(dataOutput, RegistryKeys.ITEM, registriesFuture) {
                 override fun configure(lookup: RegistryWrapper.WrapperLookup?) {
-                    // TODO: extract the ids into constants or sth
                     getTagBuilder(ItemTags.SWORDS).add(Adamantite.id("adamantite_sword"))
                     getTagBuilder(ItemTags.SHOVELS).add(Adamantite.id("adamantite_shovel"))
                     getTagBuilder(ItemTags.PICKAXES).add(Adamantite.id("adamantite_pickaxe"))
