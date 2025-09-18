@@ -23,6 +23,8 @@ fun initLootTables() {
 private val chances: Map<Identifier, Float> = mapOf(
     LootTables.ANCIENT_CITY_CHEST to 0.15f,
     LootTables.WOODLAND_MANSION_CHEST to 0.15f,
+    LootTables.STRONGHOLD_CORRIDOR_CHEST to 0.04f,
+    LootTables.STRONGHOLD_CROSSING_CHEST to 0.04f,
     LootTables.DESERT_PYRAMID_CHEST to 0.02f,
     LootTables.JUNGLE_TEMPLE_CHEST to 0.02f,
     LootTables.ABANDONED_MINESHAFT_CHEST to 0.02f,
