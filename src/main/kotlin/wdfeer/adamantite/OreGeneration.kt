@@ -13,8 +13,8 @@ import net.minecraft.world.World
 import kotlin.random.Random
 
 private const val INTERVAL = 220
-private const val TRIES_PER_CHUNK = 10
-private val HEIGHT_RANGE = -60..-20
+private const val TRIES_PER_CHUNK = 3
+private val HEIGHT_RANGE = -60..-40
 private const val ADAMANTITE_GENERATION_STATE_ID = "adamantite_generation"
 
 private data class AdamantiteGenerationState(var generated: MutableSet<ChunkPos>) : PersistentState() {

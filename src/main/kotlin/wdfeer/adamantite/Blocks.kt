@@ -12,7 +12,6 @@ import net.minecraft.item.ItemGroups
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 
-
 val deepslateAdamantiteOre = Block(FabricBlockSettings.create().hardness(Blocks.DEEPSLATE_DIAMOND_ORE.hardness)).register("deepslate_adamantite_ore")
 
 private fun Block.register(name: String, shouldRegisterItem: Boolean = true): Block {
