@@ -14,7 +14,14 @@ object Config {
         val file = path.toFile()
         if (file.exists()) {
             val lines = file.readLines()
-            // TODO: read properties from lines
+            val map: Map<String, String> = lines.map { line ->
+                line.split("=").map { it.trim() }
+            }.associate { it[0] to it[1] }
+            enableGeneration = map["enableGeneration"]?.toBooleanStrictOrNull() ?: enableGeneration
+            interval = map["interval"]?.toIntOrNull() ?: interval
+            triesPerChunk = map["triesPerChunk"]?.toIntOrNull() ?: triesPerChunk
+            minHeight = map["minHeight"]?.toIntOrNull() ?: minHeight
+            maxHeight = map["maxHeight"]?.toIntOrNull() ?: maxHeight
         } else {
             file.writeText(defaultConfig)
         }
