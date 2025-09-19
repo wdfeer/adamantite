@@ -68,16 +68,13 @@ private fun tick(server: MinecraftServer) {
         state.generated.add(chunk)
         state.markDirty()
 
-        var count = 0
         repeat(Config.triesPerChunk) {
-            count += tryGenerateVein(world, chunk)
+            tryGenerateVein(world, chunk)
         }
-        Adamantite.logger.info("Generated $count deepslate adamantite ore blocks in the chunk ${chunk.x},${chunk.z}.")
     }
 }
 
-private fun tryGenerateVein(world: ServerWorld, chunk: ChunkPos): Int {
-    var count = 0
+private fun tryGenerateVein(world: ServerWorld, chunk: ChunkPos) {
     val pos =
         BlockPos(
             chunk.x * 16 + Random.nextInt(16),
@@ -87,15 +84,12 @@ private fun tryGenerateVein(world: ServerWorld, chunk: ChunkPos): Int {
     if (world.getBlockState(pos).block == Blocks.DEEPSLATE) {
         val extraCount = Random.nextInt(3)
         world.setBlockState(pos, deepslateAdamantiteOre.defaultState)
-        count++
         repeat(extraCount) {
             val range = -1..1
             val pos = pos.add(range.random(), range.random(), range.random())
             if (world.getBlockState(pos).block == Blocks.DEEPSLATE) {
                 world.setBlockState(pos, deepslateAdamantiteOre.defaultState)
-                count++
             }
         }
     }
-    return count
 }
