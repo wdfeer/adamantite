@@ -11,6 +11,19 @@ object Config {
 
     fun load() {
         val path = FabricLoader.getInstance().configDir.resolve("adamantite.cfg")
-        // TODO: get properties from the config file or generate new file
+        val file = path.toFile()
+        if (file.exists()) {
+            val lines = file.readLines()
+            // TODO: read properties from lines
+        } else {
+            file.writeText(defaultConfig)
+        }
     }
+
+    private val defaultConfig: String = """enableGeneration = $enableGeneration
+        |interval = $interval
+        |triesPerChunk = $triesPerChunk
+        |minHeight = $minHeight
+        |maxHeight = $maxHeight
+    """.trimMargin()
 }
