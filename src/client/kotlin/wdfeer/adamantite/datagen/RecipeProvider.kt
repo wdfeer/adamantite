@@ -29,6 +29,22 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
             .offerTo(exporter, getItemPath(result) + "_smithing")
     }
 
+    private fun offerTitaniumUpgradeRecipe(
+        exporter: Consumer<RecipeJsonProvider>,
+        input: Item,
+        category: RecipeCategory,
+        result: Item
+    ) { // idk just copied from the function above lol
+        SmithingTransformRecipeJsonBuilder.create(
+            Ingredient.ofItems(*arrayOf<ItemConvertible>(titaniumUpgradeTemplate)),
+            Ingredient.ofItems(*arrayOf<ItemConvertible>(input)),
+            Ingredient.ofItems(*arrayOf<ItemConvertible>(titaniumIngot)),
+            category,
+            result
+        ).criterion("has_titanium_ingot", conditionsFromItem(Items.NETHERITE_INGOT))
+            .offerTo(exporter, getItemPath(result) + "_smithing")
+    }
+
     private fun offerSmeltingBlasting(exporter: Consumer<RecipeJsonProvider>, input: ItemConvertible, output: Item) {
         offerSmelting(
             exporter,
@@ -55,6 +71,7 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
         offerSmeltingBlasting(exporter, deepslateTitaniumOre, titaniumIngot)
 
         offerSmithingTemplateCopyingRecipe(exporter, adamantiteUpgradeTemplate, Items.END_STONE)
+        offerSmithingTemplateCopyingRecipe(exporter, titaniumUpgradeTemplate, Items.COBBLED_DEEPSLATE)
 
         offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_HELMET, RecipeCategory.COMBAT, adamantiteHelmet)
         offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_CHESTPLATE, RecipeCategory.COMBAT, adamantiteChestplate)
@@ -64,5 +81,14 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
         offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_PICKAXE, RecipeCategory.TOOLS, adamantitePickaxe)
         offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_AXE, RecipeCategory.TOOLS, adamantiteAxe)
         offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_HOE, RecipeCategory.TOOLS, adamantiteHoe)
+
+        offerTitaniumUpgradeRecipe(exporter, Items.NETHERITE_HELMET, RecipeCategory.COMBAT, titaniumHelmet)
+        offerTitaniumUpgradeRecipe(exporter, Items.NETHERITE_CHESTPLATE, RecipeCategory.COMBAT, titaniumChestplate)
+        offerTitaniumUpgradeRecipe(exporter, Items.NETHERITE_LEGGINGS, RecipeCategory.COMBAT, titaniumLeggings)
+        offerTitaniumUpgradeRecipe(exporter, Items.NETHERITE_BOOTS, RecipeCategory.COMBAT, titaniumBoots)
+        offerTitaniumUpgradeRecipe(exporter, Items.NETHERITE_SHOVEL, RecipeCategory.TOOLS, titaniumShovel)
+        offerTitaniumUpgradeRecipe(exporter, Items.NETHERITE_PICKAXE, RecipeCategory.TOOLS, titaniumPickaxe)
+        offerTitaniumUpgradeRecipe(exporter, Items.NETHERITE_AXE, RecipeCategory.TOOLS, titaniumAxe)
+        offerTitaniumUpgradeRecipe(exporter, Items.NETHERITE_HOE, RecipeCategory.TOOLS, titaniumHoe)
     }
 }

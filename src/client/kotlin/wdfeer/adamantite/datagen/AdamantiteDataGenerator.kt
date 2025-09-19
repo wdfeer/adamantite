@@ -34,12 +34,12 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
             object : FabricModelProvider(dataOutput) {
                 override fun generateBlockStateModels(generator: BlockStateModelGenerator) {
                     generator.registerSimpleCubeAll(deepslateAdamantiteOre)
+
                     generator.registerSimpleCubeAll(deepslateTitaniumOre)
                 }
 
                 override fun generateItemModels(generator: ItemModelGenerator) {
                     generator.register(adamantiteIngot, Models.GENERATED)
-                    generator.register(titaniumIngot, Models.GENERATED)
                     generator.register(adamantiteUpgradeTemplate, Models.GENERATED)
                     generator.register(adamantiteSword, Models.HANDHELD)
                     generator.register(adamantiteShovel, Models.HANDHELD)
@@ -50,6 +50,18 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                     generator.registerArmor(adamantiteChestplate)
                     generator.registerArmor(adamantiteLeggings)
                     generator.registerArmor(adamantiteBoots)
+
+                    generator.register(titaniumIngot, Models.GENERATED)
+                    generator.register(titaniumUpgradeTemplate, Models.GENERATED)
+                    generator.register(titaniumSword, Models.HANDHELD)
+                    generator.register(titaniumShovel, Models.HANDHELD)
+                    generator.register(titaniumPickaxe, Models.HANDHELD)
+                    generator.register(titaniumAxe, Models.HANDHELD)
+                    generator.register(titaniumHoe, Models.HANDHELD)
+                    generator.registerArmor(titaniumHelmet)
+                    generator.registerArmor(titaniumChestplate)
+                    generator.registerArmor(titaniumLeggings)
+                    generator.registerArmor(titaniumBoots)
                 }
             }
         }
@@ -61,6 +73,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                 override fun configure(lookup: RegistryWrapper.WrapperLookup?) {
                     getTagBuilder(BlockTags.PICKAXE_MINEABLE).add(Adamantite.id("deepslate_adamantite_ore"))
                     getTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL).add(Adamantite.id("deepslate_adamantite_ore"))
+
                     getTagBuilder(BlockTags.PICKAXE_MINEABLE).add(Adamantite.id("deepslate_titanium_ore"))
                     getTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL).add(Adamantite.id("deepslate_titanium_ore"))
                 }
@@ -80,6 +93,17 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                     getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("adamantite_chestplate"))
                     getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("adamantite_leggings"))
                     getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("adamantite_boots"))
+
+                    getTagBuilder(ItemTags.SWORDS).add(Adamantite.id("titanium_sword"))
+                    getTagBuilder(ItemTags.SHOVELS).add(Adamantite.id("titanium_shovel"))
+                    getTagBuilder(ItemTags.PICKAXES).add(Adamantite.id("titanium_pickaxe"))
+                    getTagBuilder(ItemTags.AXES).add(Adamantite.id("titanium_axe"))
+                    getTagBuilder(ItemTags.HOES).add(Adamantite.id("titanium_hoe"))
+
+                    getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("titanium_helmet"))
+                    getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("titanium_chestplate"))
+                    getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("titanium_leggings"))
+                    getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("titanium_boots"))
                 }
             }
         }
@@ -88,9 +112,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
             object : FabricLanguageProvider(dataOutput, "en_us") {
                 override fun generateTranslations(buffer: TranslationBuilder) {
                     buffer.add(deepslateAdamantiteOre, "Deepslate Adamantite Ore")
-                    buffer.add(deepslateTitaniumOre, "Deepslate Titanium Ore")
                     buffer.add(adamantiteIngot, "Adamantite Ingot")
-                    buffer.add(titaniumIngot, "Titanium Ingot")
                     buffer.add(adamantiteSword, "Adamantite Sword")
                     buffer.add(adamantiteShovel, "Adamantite Shovel")
                     buffer.add(adamantitePickaxe, "Adamantite Pickaxe")
@@ -100,6 +122,18 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                     buffer.add(adamantiteChestplate, "Adamantite Chestplate")
                     buffer.add(adamantiteLeggings, "Adamantite Leggings")
                     buffer.add(adamantiteBoots, "Adamantite Boots")
+
+                    buffer.add(deepslateTitaniumOre, "Deepslate Titanium Ore")
+                    buffer.add(titaniumIngot, "Titanium Ingot")
+                    buffer.add(titaniumSword, "Titanium Sword")
+                    buffer.add(titaniumShovel, "Titanium Shovel")
+                    buffer.add(titaniumPickaxe, "Titanium Pickaxe")
+                    buffer.add(titaniumAxe, "Titanium Axe")
+                    buffer.add(titaniumHoe, "Titanium Hoe")
+                    buffer.add(titaniumHelmet, "Titanium Helmet")
+                    buffer.add(titaniumChestplate, "Titanium Chestplate")
+                    buffer.add(titaniumLeggings, "Titanium Leggings")
+                    buffer.add(titaniumBoots, "Titanium Boots")
                 }
             }
         }
