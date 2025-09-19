@@ -28,6 +28,7 @@ import wdfeer.adamantite.adamantiteShovel
 import wdfeer.adamantite.adamantiteSword
 import wdfeer.adamantite.adamantiteUpgradeTemplate
 import wdfeer.adamantite.deepslateAdamantiteOre
+import wdfeer.adamantite.deepslateTitaniumOre
 
 object AdamantiteDataGenerator : DataGeneratorEntrypoint {
     override fun onInitializeDataGenerator(generator: FabricDataGenerator) {
@@ -37,6 +38,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
             object : FabricBlockLootTableProvider(dataOutput) {
                 override fun generate() {
                     addDrop(deepslateAdamantiteOre, deepslateAdamantiteOre)
+                    addDrop(deepslateTitaniumOre, deepslateTitaniumOre)
                 }
             }
         }
@@ -45,6 +47,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
             object : FabricModelProvider(dataOutput) {
                 override fun generateBlockStateModels(generator: BlockStateModelGenerator) {
                     generator.registerSimpleCubeAll(deepslateAdamantiteOre)
+                    generator.registerSimpleCubeAll(deepslateTitaniumOre)
                 }
 
                 override fun generateItemModels(generator: ItemModelGenerator) {
@@ -70,6 +73,8 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                 override fun configure(lookup: RegistryWrapper.WrapperLookup?) {
                     getTagBuilder(BlockTags.PICKAXE_MINEABLE).add(Adamantite.id("deepslate_adamantite_ore"))
                     getTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL).add(Adamantite.id("deepslate_adamantite_ore"))
+                    getTagBuilder(BlockTags.PICKAXE_MINEABLE).add(Adamantite.id("deepslate_titanium_ore"))
+                    getTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL).add(Adamantite.id("deepslate_titanium_ore"))
                 }
             }
         }
@@ -95,6 +100,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
             object : FabricLanguageProvider(dataOutput, "en_us") {
                 override fun generateTranslations(buffer: TranslationBuilder) {
                     buffer.add(deepslateAdamantiteOre, "Deepslate Adamantite Ore")
+                    buffer.add(deepslateTitaniumOre, "Deepslate Titanium Ore")
                     buffer.add(adamantiteIngot, "Adamantite Ingot")
                     buffer.add(adamantiteSword, "Adamantite Sword")
                     buffer.add(adamantiteShovel, "Adamantite Shovel")

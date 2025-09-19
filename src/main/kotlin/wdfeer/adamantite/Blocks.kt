@@ -13,6 +13,7 @@ import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 
 val deepslateAdamantiteOre = Block(FabricBlockSettings.create().hardness(Blocks.DEEPSLATE_DIAMOND_ORE.hardness)).register("deepslate_adamantite_ore")
+val deepslateTitaniumOre = Block(FabricBlockSettings.create().hardness(Blocks.DEEPSLATE_DIAMOND_ORE.hardness)).register("deepslate_titanium_ore")
 
 private fun Block.register(name: String, shouldRegisterItem: Boolean = true): Block {
     val id = Adamantite.id(name)
@@ -26,5 +27,6 @@ private fun Block.register(name: String, shouldRegisterItem: Boolean = true): Bl
 fun initBlocks() {
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register { content: FabricItemGroupEntries ->
         content.add(deepslateAdamantiteOre)
+        content.add(deepslateTitaniumOre)
     }
 }
