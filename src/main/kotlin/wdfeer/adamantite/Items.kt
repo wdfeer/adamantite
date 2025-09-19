@@ -54,6 +54,22 @@ val adamantitePickaxe =
 val adamantiteAxe = AxeItem(adamantiteToolMaterial, 5f, -3f, FabricItemSettings()).register("adamantite_axe")
 val adamantiteHoe = HoeItem(adamantiteToolMaterial, -4, 0f, FabricItemSettings()).register("adamantite_hoe")
 
+private val titaniumToolMaterial = object : ToolMaterial {
+    override fun getDurability(): Int = ToolMaterials.NETHERITE.durability
+    override fun getMiningSpeedMultiplier(): Float = ToolMaterials.NETHERITE.miningSpeedMultiplier + 1
+    override fun getAttackDamage(): Float = ToolMaterials.NETHERITE.attackDamage + 1
+    override fun getMiningLevel(): Int = ToolMaterials.NETHERITE.miningLevel
+    override fun getEnchantability(): Int = ToolMaterials.NETHERITE.enchantability
+    override fun getRepairIngredient(): Ingredient = Ingredient.ofItems(titaniumIngot)
+}
+
+val titaniumSword = SwordItem(titaniumToolMaterial, 3, -2.4f, FabricItemSettings()).register("titanium_sword")
+val titaniumShovel = ShovelItem(titaniumToolMaterial, 1.5f, -3f, FabricItemSettings()).register("titanium_shovel")
+val titaniumPickaxe =
+    PickaxeItem(titaniumToolMaterial, 1, -2.8f, FabricItemSettings()).register("titanium_pickaxe")
+val titaniumAxe = AxeItem(titaniumToolMaterial, 5f, -3f, FabricItemSettings()).register("titanium_axe")
+val titaniumHoe = HoeItem(titaniumToolMaterial, -4, 0f, FabricItemSettings()).register("titanium_hoe")
+
 private val adamantiteArmorMaterial = object : ArmorMaterial {
     override fun getDurability(type: ArmorItem.Type): Int = ArmorMaterials.NETHERITE.getDurability(type)
     override fun getProtection(type: ArmorItem.Type): Int = ArmorMaterials.NETHERITE.getProtection(type)
@@ -75,6 +91,27 @@ val adamantiteLeggings =
 val adamantiteBoots =
     ArmorItem(adamantiteArmorMaterial, ArmorItem.Type.BOOTS, FabricItemSettings()).register("adamantite_boots")
 
+private val titaniumArmorMaterial = object : ArmorMaterial {
+    override fun getDurability(type: ArmorItem.Type): Int = ArmorMaterials.NETHERITE.getDurability(type)
+    override fun getProtection(type: ArmorItem.Type): Int = ArmorMaterials.NETHERITE.getProtection(type)
+    override fun getEnchantability(): Int = ArmorMaterials.NETHERITE.enchantability
+    override fun getEquipSound(): SoundEvent = ArmorMaterials.IRON.equipSound
+    override fun getName(): String = "titanium"
+    override fun getToughness(): Float = ArmorMaterials.NETHERITE.toughness + 1
+    override fun getKnockbackResistance(): Float = ArmorMaterials.NETHERITE.knockbackResistance
+    override fun getRepairIngredient(): Ingredient = Ingredient.ofItems(titaniumIngot)
+}
+
+val titaniumHelmet =
+    ArmorItem(titaniumArmorMaterial, ArmorItem.Type.HELMET, FabricItemSettings()).register("titanium_helmet")
+val titaniumChestplate = ArmorItem(
+    titaniumArmorMaterial, ArmorItem.Type.CHESTPLATE, FabricItemSettings()
+).register("titanium_chestplate")
+val titaniumLeggings =
+    ArmorItem(titaniumArmorMaterial, ArmorItem.Type.LEGGINGS, FabricItemSettings()).register("titanium_leggings")
+val titaniumBoots =
+    ArmorItem(titaniumArmorMaterial, ArmorItem.Type.BOOTS, FabricItemSettings()).register("titanium_boots")
+
 private fun <T : Item> T.register(name: String): T {
     val id = Adamantite.id(name)
     return Registry.register(Registries.ITEM, id, this)
@@ -83,22 +120,30 @@ private fun <T : Item> T.register(name: String): T {
 fun initItems() {
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register { content: FabricItemGroupEntries ->
         content.add(adamantiteIngot)
-        content.add(titaniumIngot)
         content.add(adamantiteUpgradeTemplate)
+        content.add(titaniumIngot)
         content.add(titaniumUpgradeTemplate)
     }
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register { content: FabricItemGroupEntries ->
         content.add(adamantiteSword)
-
         content.add(adamantiteHelmet)
         content.add(adamantiteChestplate)
         content.add(adamantiteLeggings)
         content.add(adamantiteBoots)
+        content.add(titaniumSword)
+        content.add(titaniumHelmet)
+        content.add(titaniumChestplate)
+        content.add(titaniumLeggings)
+        content.add(titaniumBoots)
     }
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register { content: FabricItemGroupEntries ->
         content.add(adamantiteShovel)
         content.add(adamantitePickaxe)
         content.add(adamantiteAxe)
         content.add(adamantiteHoe)
+        content.add(titaniumShovel)
+        content.add(titaniumPickaxe)
+        content.add(titaniumAxe)
+        content.add(titaniumHoe)
     }
 }
