@@ -13,6 +13,7 @@ import net.minecraft.util.Formatting
 import net.minecraft.util.Identifier
 
 val adamantiteIngot = Item(FabricItemSettings()).register("adamantite_ingot")
+val titaniumIngot = Item(FabricItemSettings()).register("titanium_ingot")
 val adamantiteUpgradeTemplate = SmithingTemplateItem(
     Text.literal("Netherite Equipment").formatted(Formatting.BLUE),
     Text.literal("Adamantite Ingot").formatted(Formatting.BLUE),
@@ -78,6 +79,7 @@ private fun <T : Item> T.register(name: String): T {
 fun initItems() {
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register { content: FabricItemGroupEntries ->
         content.add(adamantiteIngot)
+        content.add(titaniumIngot)
         content.add(adamantiteUpgradeTemplate)
     }
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register { content: FabricItemGroupEntries ->

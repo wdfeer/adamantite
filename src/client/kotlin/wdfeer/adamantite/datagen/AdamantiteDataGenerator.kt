@@ -15,20 +15,7 @@ import net.minecraft.registry.RegistryKeys
 import net.minecraft.registry.RegistryWrapper
 import net.minecraft.registry.tag.BlockTags
 import net.minecraft.registry.tag.ItemTags
-import wdfeer.adamantite.Adamantite
-import wdfeer.adamantite.adamantiteAxe
-import wdfeer.adamantite.adamantiteBoots
-import wdfeer.adamantite.adamantiteChestplate
-import wdfeer.adamantite.adamantiteHelmet
-import wdfeer.adamantite.adamantiteHoe
-import wdfeer.adamantite.adamantiteIngot
-import wdfeer.adamantite.adamantiteLeggings
-import wdfeer.adamantite.adamantitePickaxe
-import wdfeer.adamantite.adamantiteShovel
-import wdfeer.adamantite.adamantiteSword
-import wdfeer.adamantite.adamantiteUpgradeTemplate
-import wdfeer.adamantite.deepslateAdamantiteOre
-import wdfeer.adamantite.deepslateTitaniumOre
+import wdfeer.adamantite.*
 
 object AdamantiteDataGenerator : DataGeneratorEntrypoint {
     override fun onInitializeDataGenerator(generator: FabricDataGenerator) {
@@ -52,6 +39,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
 
                 override fun generateItemModels(generator: ItemModelGenerator) {
                     generator.register(adamantiteIngot, Models.GENERATED)
+                    generator.register(titaniumIngot, Models.GENERATED)
                     generator.register(adamantiteUpgradeTemplate, Models.GENERATED)
                     generator.register(adamantiteSword, Models.HANDHELD)
                     generator.register(adamantiteShovel, Models.HANDHELD)
@@ -102,6 +90,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                     buffer.add(deepslateAdamantiteOre, "Deepslate Adamantite Ore")
                     buffer.add(deepslateTitaniumOre, "Deepslate Titanium Ore")
                     buffer.add(adamantiteIngot, "Adamantite Ingot")
+                    buffer.add(titaniumIngot, "Titanium Ingot")
                     buffer.add(adamantiteSword, "Adamantite Sword")
                     buffer.add(adamantiteShovel, "Adamantite Shovel")
                     buffer.add(adamantitePickaxe, "Adamantite Pickaxe")

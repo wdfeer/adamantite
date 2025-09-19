@@ -29,25 +29,30 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
             .offerTo(exporter, getItemPath(result) + "_smithing")
     }
 
-    override fun generate(exporter: Consumer<RecipeJsonProvider>) {
+    private fun offerSmeltingBlasting(exporter: Consumer<RecipeJsonProvider>, input: ItemConvertible, output: Item) {
         offerSmelting(
             exporter,
-            listOf(deepslateAdamantiteOre),
+            listOf(input),
             RecipeCategory.MISC,
-            adamantiteIngot,
+            output,
             1f,
             300,
             ""
         )
         offerBlasting(
             exporter,
-            listOf(deepslateAdamantiteOre),
+            listOf(input),
             RecipeCategory.MISC,
-            adamantiteIngot,
+            output,
             1f,
             300,
             ""
         )
+    }
+
+    override fun generate(exporter: Consumer<RecipeJsonProvider>) {
+        offerSmeltingBlasting(exporter, deepslateAdamantiteOre, adamantiteIngot)
+        offerSmeltingBlasting(exporter, deepslateTitaniumOre, titaniumIngot)
 
         offerSmithingTemplateCopyingRecipe(exporter, adamantiteUpgradeTemplate, Items.END_STONE)
 
