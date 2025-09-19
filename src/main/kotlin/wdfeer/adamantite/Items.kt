@@ -14,12 +14,13 @@ import net.minecraft.util.Identifier
 
 val adamantiteIngot = Item(FabricItemSettings()).register("adamantite_ingot")
 val titaniumIngot = Item(FabricItemSettings()).register("titanium_ingot")
-val adamantiteUpgradeTemplate = SmithingTemplateItem(
+
+private fun smithingTemplate(name: String) = SmithingTemplateItem(
     Text.literal("Netherite Equipment").formatted(Formatting.BLUE),
-    Text.literal("Adamantite Ingot").formatted(Formatting.BLUE),
-    Text.literal("Adamantite Upgrade").formatted(Formatting.GRAY),
+    Text.literal("$name Ingot").formatted(Formatting.BLUE),
+    Text.literal("$name Upgrade").formatted(Formatting.GRAY),
     Text.literal("Add netherite armor, weapon, or tool"),
-    Text.literal("Add Adamantite Ingot"),
+    Text.literal("Add $name Ingot"),
     listOf(
         Identifier("item/empty_armor_slot_helmet"),
         Identifier("item/empty_armor_slot_chestplate"),
@@ -32,7 +33,10 @@ val adamantiteUpgradeTemplate = SmithingTemplateItem(
         Identifier("item/empty_slot_pickaxe")
     ),
     listOf(Identifier("item/empty_slot_ingot"))
-).register("adamantite_upgrade_template")
+)
+
+val adamantiteUpgradeTemplate = smithingTemplate("Adamantite").register("adamantite_upgrade_template")
+val titaniumUpgradeTemplate = smithingTemplate("Titanium").register("adamantite")
 
 private val adamantiteToolMaterial = object : ToolMaterial {
     override fun getDurability(): Int = ToolMaterials.NETHERITE.durability
@@ -81,6 +85,7 @@ fun initItems() {
         content.add(adamantiteIngot)
         content.add(titaniumIngot)
         content.add(adamantiteUpgradeTemplate)
+        content.add(titaniumUpgradeTemplate)
     }
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register { content: FabricItemGroupEntries ->
         content.add(adamantiteSword)
