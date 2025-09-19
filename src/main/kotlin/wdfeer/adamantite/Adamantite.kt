@@ -11,6 +11,7 @@ object Adamantite : ModInitializer {
     fun id(name: String): Identifier = Identifier("adamantite", name)
 
     override fun onInitialize() {
+        Config.load()
         initBlocks()
         initItems()
         initOreGeneration()

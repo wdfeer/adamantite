@@ -12,9 +12,6 @@ import net.minecraft.world.PersistentState
 import net.minecraft.world.World
 import kotlin.random.Random
 
-private const val INTERVAL = 220
-private const val TRIES_PER_CHUNK = 3
-private val HEIGHT_RANGE = -60..-40
 private const val ADAMANTITE_GENERATION_STATE_ID = "adamantite_generation"
 
 private data class AdamantiteGenerationState(var generated: MutableSet<ChunkPos>) : PersistentState() {
@@ -30,7 +27,9 @@ private data class AdamantiteGenerationState(var generated: MutableSet<ChunkPos>
     }
 }
 
-fun initOreGeneration() = ServerTickEvents.END_SERVER_TICK.register(::tick)
+fun initOreGeneration() {
+    if (Config.enableGeneration) ServerTickEvents.END_SERVER_TICK.register(::tick)
+}
 
 private fun tick(server: MinecraftServer) {
     val enderDragonDead =
@@ -38,7 +37,7 @@ private fun tick(server: MinecraftServer) {
     if (!enderDragonDead) return
 
     val world = server.overworld
-    if (world.time % INTERVAL != 0L) return
+    if (world.time % Config.interval != 0L) return
 
     val validPlayers = world.players.filter { it.isAlive && it.interactionManager.gameMode != GameMode.SPECTATOR }
     if (validPlayers.isEmpty()) return
@@ -70,7 +69,7 @@ private fun tick(server: MinecraftServer) {
         state.markDirty()
 
         var count = 0
-        repeat(TRIES_PER_CHUNK) {
+        repeat(Config.triesPerChunk) {
             count += tryGenerateVein(world, chunk)
         }
         Adamantite.logger.info("Generated $count deepslate adamantite ore blocks in the chunk ${chunk.x},${chunk.z}.")
@@ -80,7 +79,11 @@ private fun tick(server: MinecraftServer) {
 private fun tryGenerateVein(world: ServerWorld, chunk: ChunkPos): Int {
     var count = 0
     val pos =
-        BlockPos(chunk.x * 16 + Random.nextInt(16), HEIGHT_RANGE.random(), chunk.z * 16 + Random.nextInt(16))
+        BlockPos(
+            chunk.x * 16 + Random.nextInt(16),
+            (Config.minHeight..Config.maxHeight).random(),
+            chunk.z * 16 + Random.nextInt(16)
+        )
     if (world.getBlockState(pos).block == Blocks.DEEPSLATE) {
         val extraCount = Random.nextInt(3)
         world.setBlockState(pos, deepslateAdamantiteOre.defaultState)
