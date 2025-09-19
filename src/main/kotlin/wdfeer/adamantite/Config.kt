@@ -38,6 +38,7 @@ object Config {
                 maxHeight
             }
         } else {
+            Adamantite.logger.info("Config file not found, generating a new one.")
             file.writeText(defaultConfig)
         }
     }
