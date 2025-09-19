@@ -36,7 +36,7 @@ private fun smithingTemplate(name: String) = SmithingTemplateItem(
 )
 
 val adamantiteUpgradeTemplate = smithingTemplate("Adamantite").register("adamantite_upgrade_template")
-val titaniumUpgradeTemplate = smithingTemplate("Titanium").register("adamantite")
+val titaniumUpgradeTemplate = smithingTemplate("Titanium").register("titanium_upgrade_template")
 
 private val adamantiteToolMaterial = object : ToolMaterial {
     override fun getDurability(): Int = ToolMaterials.NETHERITE.durability
