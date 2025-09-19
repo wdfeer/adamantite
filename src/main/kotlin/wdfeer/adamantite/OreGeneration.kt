@@ -1,6 +1,7 @@
 package wdfeer.adamantite
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
+import net.minecraft.block.Block
 import net.minecraft.block.Blocks
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.server.MinecraftServer
@@ -74,7 +75,11 @@ private fun tick(server: MinecraftServer) {
     }
 }
 
+private fun getOre(world: ServerWorld): Block =
+    if (Random(world.seed).nextBoolean()) deepslateAdamantiteOre else deepslateTitaniumOre
+
 private fun tryGenerateVein(world: ServerWorld, chunk: ChunkPos) {
+    val ore = getOre(world)
     val pos =
         BlockPos(
             chunk.x * 16 + Random.nextInt(16),
@@ -83,12 +88,12 @@ private fun tryGenerateVein(world: ServerWorld, chunk: ChunkPos) {
         )
     if (world.getBlockState(pos).block == Blocks.DEEPSLATE) {
         val extraCount = Random.nextInt(3)
-        world.setBlockState(pos, deepslateAdamantiteOre.defaultState)
+        world.setBlockState(pos, ore.defaultState)
         repeat(extraCount) {
             val range = -1..1
             val pos = pos.add(range.random(), range.random(), range.random())
             if (world.getBlockState(pos).block == Blocks.DEEPSLATE) {
-                world.setBlockState(pos, deepslateAdamantiteOre.defaultState)
+                world.setBlockState(pos, ore.defaultState)
             }
         }
     }
