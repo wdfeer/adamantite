@@ -3,6 +3,7 @@ package wdfeer.adamantite.datagen
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider
 import net.minecraft.data.server.recipe.RecipeJsonProvider
+import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder
 import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder
 import net.minecraft.item.Item
 import net.minecraft.item.ItemConvertible
@@ -72,6 +73,17 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
 
         offerSmithingTemplateCopyingRecipe(exporter, adamantiteUpgradeTemplate, Items.END_STONE)
         offerSmithingTemplateCopyingRecipe(exporter, titaniumUpgradeTemplate, Items.COBBLED_DEEPSLATE)
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, adamantiteUpgradeTemplate, 1)
+            .input(titaniumUpgradeTemplate)
+            .input(Items.CHORUS_FRUIT)
+            .criterion(hasItem(titaniumUpgradeTemplate), conditionsFromItem(titaniumUpgradeTemplate))
+            .offerTo(exporter, convertBetween(adamantiteUpgradeTemplate, titaniumUpgradeTemplate))
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, titaniumUpgradeTemplate, 1)
+            .input(adamantiteUpgradeTemplate)
+            .input(Items.CHORUS_FRUIT)
+            .criterion(hasItem(adamantiteUpgradeTemplate), conditionsFromItem(adamantiteUpgradeTemplate))
+            .offerTo(exporter, convertBetween(titaniumUpgradeTemplate, adamantiteUpgradeTemplate))
 
         offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_HELMET, RecipeCategory.COMBAT, adamantiteHelmet)
         offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_CHESTPLATE, RecipeCategory.COMBAT, adamantiteChestplate)
