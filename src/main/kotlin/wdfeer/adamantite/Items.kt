@@ -43,7 +43,7 @@ private val adamantiteToolMaterial = object : ToolMaterial {
     override fun getMiningSpeedMultiplier(): Float = ToolMaterials.NETHERITE.miningSpeedMultiplier + 1
     override fun getAttackDamage(): Float = ToolMaterials.NETHERITE.attackDamage + 1
     override fun getMiningLevel(): Int = ToolMaterials.NETHERITE.miningLevel
-    override fun getEnchantability(): Int = ToolMaterials.NETHERITE.enchantability
+    override fun getEnchantability(): Int = ToolMaterials.NETHERITE.enchantability + 1
     override fun getRepairIngredient(): Ingredient = Ingredient.ofItems(adamantiteIngot)
 }
 
@@ -59,7 +59,7 @@ private val titaniumToolMaterial = object : ToolMaterial {
     override fun getMiningSpeedMultiplier(): Float = ToolMaterials.NETHERITE.miningSpeedMultiplier + 1
     override fun getAttackDamage(): Float = ToolMaterials.NETHERITE.attackDamage + 1
     override fun getMiningLevel(): Int = ToolMaterials.NETHERITE.miningLevel
-    override fun getEnchantability(): Int = ToolMaterials.NETHERITE.enchantability
+    override fun getEnchantability(): Int = ToolMaterials.NETHERITE.enchantability + 1
     override fun getRepairIngredient(): Ingredient = Ingredient.ofItems(titaniumIngot)
 }
 
@@ -73,7 +73,7 @@ val titaniumHoe = HoeItem(titaniumToolMaterial, -4, 0f, FabricItemSettings()).re
 private val adamantiteArmorMaterial = object : ArmorMaterial {
     override fun getDurability(type: ArmorItem.Type): Int = ArmorMaterials.NETHERITE.getDurability(type)
     override fun getProtection(type: ArmorItem.Type): Int = ArmorMaterials.NETHERITE.getProtection(type)
-    override fun getEnchantability(): Int = ArmorMaterials.NETHERITE.enchantability
+    override fun getEnchantability(): Int = ArmorMaterials.NETHERITE.enchantability + 1
     override fun getEquipSound(): SoundEvent = ArmorMaterials.IRON.equipSound
     override fun getName(): String = "adamantite"
     override fun getToughness(): Float = ArmorMaterials.NETHERITE.toughness + 1
@@ -94,7 +94,7 @@ val adamantiteBoots =
 private val titaniumArmorMaterial = object : ArmorMaterial {
     override fun getDurability(type: ArmorItem.Type): Int = ArmorMaterials.NETHERITE.getDurability(type)
     override fun getProtection(type: ArmorItem.Type): Int = ArmorMaterials.NETHERITE.getProtection(type)
-    override fun getEnchantability(): Int = ArmorMaterials.NETHERITE.enchantability
+    override fun getEnchantability(): Int = ArmorMaterials.NETHERITE.enchantability + 1
     override fun getEquipSound(): SoundEvent = ArmorMaterials.IRON.equipSound
     override fun getName(): String = "titanium"
     override fun getToughness(): Float = ArmorMaterials.NETHERITE.toughness + 1
