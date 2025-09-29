@@ -67,6 +67,14 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
         )
     }
 
+    private fun offerChorusConversionRecipe(exporter: Consumer<RecipeJsonProvider>, input: Item, output: Item) {
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, output, 1)
+            .input(input)
+            .input(Items.CHORUS_FRUIT)
+            .criterion(hasItem(input), conditionsFromItem(input))
+            .offerTo(exporter, convertBetween(output, input))
+    }
+
     override fun generate(exporter: Consumer<RecipeJsonProvider>) {
         offerSmeltingBlasting(exporter, deepslateAdamantiteOre, adamantiteIngot)
         offerSmeltingBlasting(exporter, deepslateTitaniumOre, titaniumIngot)
@@ -74,16 +82,11 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
         offerSmithingTemplateCopyingRecipe(exporter, adamantiteUpgradeTemplate, Items.END_STONE)
         offerSmithingTemplateCopyingRecipe(exporter, titaniumUpgradeTemplate, Items.COBBLED_DEEPSLATE)
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, adamantiteUpgradeTemplate, 1)
-            .input(titaniumUpgradeTemplate)
-            .input(Items.CHORUS_FRUIT)
-            .criterion(hasItem(titaniumUpgradeTemplate), conditionsFromItem(titaniumUpgradeTemplate))
-            .offerTo(exporter, convertBetween(adamantiteUpgradeTemplate, titaniumUpgradeTemplate))
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, titaniumUpgradeTemplate, 1)
-            .input(adamantiteUpgradeTemplate)
-            .input(Items.CHORUS_FRUIT)
-            .criterion(hasItem(adamantiteUpgradeTemplate), conditionsFromItem(adamantiteUpgradeTemplate))
-            .offerTo(exporter, convertBetween(titaniumUpgradeTemplate, adamantiteUpgradeTemplate))
+        offerChorusConversionRecipe(exporter, adamantiteUpgradeTemplate, titaniumUpgradeTemplate)
+        offerChorusConversionRecipe(exporter, adamantiteIngot, titaniumIngot)
+
+        offerChorusConversionRecipe(exporter, titaniumUpgradeTemplate, adamantiteUpgradeTemplate)
+        offerChorusConversionRecipe(exporter, titaniumIngot, adamantiteIngot)
 
         offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_HELMET, RecipeCategory.COMBAT, adamantiteHelmet)
         offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_CHESTPLATE, RecipeCategory.COMBAT, adamantiteChestplate)
