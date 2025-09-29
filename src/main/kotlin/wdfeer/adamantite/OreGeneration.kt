@@ -49,19 +49,16 @@ private fun tick(server: MinecraftServer) {
         ADAMANTITE_GENERATION_STATE_ID
     )
 
-    val chunksToGenerate = validPlayers.map {
-        listOf(
-            it.chunkPos,
-            it.chunkPos.run { ChunkPos(x + 1, z) },
-            it.chunkPos.run { ChunkPos(x - 1, z) },
-            it.chunkPos.run { ChunkPos(x, z + 1) },
-            it.chunkPos.run { ChunkPos(x, z - 1) },
-            it.chunkPos.run { ChunkPos(x + 1, z + 1) },
-            it.chunkPos.run { ChunkPos(x - 1, z + 1) },
-            it.chunkPos.run { ChunkPos(x + 1, z - 1) },
-            it.chunkPos.run { ChunkPos(x - 1, z - 1) },
-        )
-    }.flatten().filter { world.chunkManager.isChunkLoaded(it.x, it.z) } - state.generated
+    val chunksToGenerate = validPlayers.flatMap { player ->
+        buildList {
+            val radius = 2
+            for (x in -radius..radius) {
+                for (z in -radius..radius) {
+                    add(ChunkPos(player.chunkPos.x + x, player.chunkPos.z + z))
+                }
+            }
+        }
+    }.filter { world.chunkManager.isChunkLoaded(it.x, it.z) } - state.generated
 
     if (chunksToGenerate.isEmpty()) return
 
