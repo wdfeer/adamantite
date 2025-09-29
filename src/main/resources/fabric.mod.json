@@ -3,7 +3,7 @@
 	"id": "adamantite",
 	"version": "${version}",
 	"name": "Adamantite",
-	"description": "Adamantite ore and tools. Generates after defeating the Ender Dragon.",
+	"description": "Adamantite and Titanium. Ore generates after defeating the Ender Dragon.",
 	"authors": [
 		"wdfeer"
 	],
