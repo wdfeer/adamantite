@@ -5,9 +5,9 @@ import net.fabricmc.loader.api.FabricLoader
 object Config {
     var enableGeneration: Boolean = true
     var interval: Int = 220
-    var triesPerChunk: Int = 3
+    var triesPerChunk: Int = 2
     var minHeight: Int = -60
-    var maxHeight: Int = -40
+    var maxHeight: Int = -30
 
     fun load() {
         val path = FabricLoader.getInstance().configDir.resolve("adamantite.cfg")
