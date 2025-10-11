@@ -1,0 +1,6 @@
+{
+    "parent": "adamantite:item/adamantite_crossbow",
+    "textures": {
+      "layer0": "adamantite:item/adamantite_crossbow_arrow"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "adamantite:item/titanium_crossbow",
+    "textures": {
+        "layer0": "adamantite:item/titanium_crossbow_pulling_0"
+    }
+}
