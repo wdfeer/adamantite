@@ -122,6 +122,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                     buffer.add(adamantiteChestplate, "Adamantite Chestplate")
                     buffer.add(adamantiteLeggings, "Adamantite Leggings")
                     buffer.add(adamantiteBoots, "Adamantite Boots")
+                    buffer.add(adamantiteCrossbow, "Adamantite Crossbow")
 
                     buffer.add(deepslateTitaniumOre, "Deepslate Titanium Ore")
                     buffer.add(titaniumIngot, "Titanium Ingot")
@@ -134,6 +135,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                     buffer.add(titaniumChestplate, "Titanium Chestplate")
                     buffer.add(titaniumLeggings, "Titanium Leggings")
                     buffer.add(titaniumBoots, "Titanium Boots")
+                    buffer.add(titaniumCrossbow, "Titanium Crossbow")
                 }
             }
         }
