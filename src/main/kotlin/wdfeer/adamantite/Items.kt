@@ -112,8 +112,8 @@ val titaniumLeggings =
 val titaniumBoots =
     ArmorItem(titaniumArmorMaterial, ArmorItem.Type.BOOTS, FabricItemSettings()).register("titanium_boots")
 
-val adamantiteCrossbow = CrossbowItem(FabricItemSettings()).register("adamantite_crossbow")
-val titaniumCrossbow = CrossbowItem(FabricItemSettings()).register("titanium_crossbow")
+val adamantiteCrossbow = CrossbowItem(FabricItemSettings().maxCount(1).maxDamage(930)).register("adamantite_crossbow")
+val titaniumCrossbow = CrossbowItem(FabricItemSettings().maxCount(1).maxDamage(930)).register("titanium_crossbow")
 
 private fun <T : Item> T.register(name: String): T {
     val id = Adamantite.id(name)
