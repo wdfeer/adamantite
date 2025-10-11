@@ -117,12 +117,12 @@ val titaniumBoots =
 val adamantiteCrossbow = CustomCrossbow(
     FabricItemSettings().maxCount(1).maxDamage(930)
 ) { Ingredient.ofItems(adamantiteIngot) }.apply {
-    configure(RangedConfig.CROSSBOW)
+    configure(RangedConfig(RangedConfig.CROSSBOW.pull_time - 5, RangedConfig.CROSSBOW.damage, RangedConfig.CROSSBOW.velocity))
 }.register("adamantite_crossbow")
 val titaniumCrossbow = CustomCrossbow(
     FabricItemSettings().maxCount(1).maxDamage(930)
-) { Ingredient.ofItems(adamantiteIngot) }.apply {
-    configure(RangedConfig.CROSSBOW)
+) { Ingredient.ofItems(titaniumIngot) }.apply {
+    configure(RangedConfig(RangedConfig.CROSSBOW.pull_time, RangedConfig.CROSSBOW.damage + 2f, RangedConfig.CROSSBOW.velocity))
 }.register("titanium_crossbow")
 
 private fun <T : Item> T.register(name: String): T {
