@@ -7,7 +7,7 @@ import net.minecraft.item.CrossbowItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
-import wdfeer.adamantite.Adamantite
+import net.minecraft.util.Identifier
 import wdfeer.adamantite.adamantiteCrossbow
 import wdfeer.adamantite.titaniumCrossbow
 
@@ -18,7 +18,7 @@ fun registerModelPredicateProviders() {
 
 private fun registerCrossbowModelPredicateProviders(crossbow: Item) {
     registerActiveProvider(crossbow, "pull") { user, stack ->
-        (stack.maxUseTime - user.getItemUseTimeLeft()) / 20.0f
+        user.itemUseTime.toFloat() / CrossbowItem.getPullTime(stack)
     }
     registerActiveProvider(crossbow, "pulling") { user, _ ->
         if (user.isUsingItem) 1f else 0f
@@ -38,7 +38,7 @@ private fun registerActiveProvider(
 ) {
     ModelPredicateProviderRegistry.register(
         item,
-        Adamantite.id(id)
+        Identifier.of("minecraft", id)
     ) { itemStack: ItemStack?, _: ClientWorld?, livingEntity: LivingEntity?, _: Int ->
         if (livingEntity == null) return@register 0f
         if (livingEntity.activeItem != itemStack) return@register 0f
