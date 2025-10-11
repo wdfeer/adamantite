@@ -1,5 +1,7 @@
 package wdfeer.adamantite
 
+import net.fabric_extras.ranged_weapon.api.CustomCrossbow
+import net.fabric_extras.ranged_weapon.api.RangedConfig
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
@@ -112,8 +114,16 @@ val titaniumLeggings =
 val titaniumBoots =
     ArmorItem(titaniumArmorMaterial, ArmorItem.Type.BOOTS, FabricItemSettings()).register("titanium_boots")
 
-val adamantiteCrossbow = CrossbowItem(FabricItemSettings().maxCount(1).maxDamage(930)).register("adamantite_crossbow")
-val titaniumCrossbow = CrossbowItem(FabricItemSettings().maxCount(1).maxDamage(930)).register("titanium_crossbow")
+val adamantiteCrossbow = CustomCrossbow(
+    FabricItemSettings().maxCount(1).maxDamage(930)
+) { Ingredient.ofItems(adamantiteIngot) }.apply {
+    configure(RangedConfig.CROSSBOW)
+}.register("adamantite_crossbow")
+val titaniumCrossbow = CustomCrossbow(
+    FabricItemSettings().maxCount(1).maxDamage(930)
+) { Ingredient.ofItems(adamantiteIngot) }.apply {
+    configure(RangedConfig.CROSSBOW)
+}.register("titanium_crossbow")
 
 private fun <T : Item> T.register(name: String): T {
     val id = Adamantite.id(name)
