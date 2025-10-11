@@ -112,6 +112,9 @@ val titaniumLeggings =
 val titaniumBoots =
     ArmorItem(titaniumArmorMaterial, ArmorItem.Type.BOOTS, FabricItemSettings()).register("titanium_boots")
 
+val adamantiteCrossbow = CrossbowItem(FabricItemSettings()).register("adamantite_crossbow")
+val titaniumCrossbow = CrossbowItem(FabricItemSettings()).register("titanium_crossbow")
+
 private fun <T : Item> T.register(name: String): T {
     val id = Adamantite.id(name)
     return Registry.register(Registries.ITEM, id, this)
@@ -126,11 +129,13 @@ fun initItems() {
     }
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register { content: FabricItemGroupEntries ->
         content.add(adamantiteSword)
+        content.add(adamantiteCrossbow)
         content.add(adamantiteHelmet)
         content.add(adamantiteChestplate)
         content.add(adamantiteLeggings)
         content.add(adamantiteBoots)
         content.add(titaniumSword)
+        content.add(titaniumCrossbow)
         content.add(titaniumHelmet)
         content.add(titaniumChestplate)
         content.add(titaniumLeggings)
