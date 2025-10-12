@@ -27,7 +27,7 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
             Ingredient.ofItems(*arrayOf<ItemConvertible>(adamantiteIngot)),
             category,
             result
-        ).criterion("has_adamantite_ingot", conditionsFromItem(Items.NETHERITE_INGOT))
+        ).criterion(hasItem(adamantiteIngot), conditionsFromItem(Items.NETHERITE_INGOT))
             .offerTo(exporter, getItemPath(result) + "_smithing")
     }
 
@@ -43,7 +43,7 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
             Ingredient.ofItems(*arrayOf<ItemConvertible>(titaniumIngot)),
             category,
             result
-        ).criterion("has_titanium_ingot", conditionsFromItem(Items.NETHERITE_INGOT))
+        ).criterion(hasItem(titaniumIngot), conditionsFromItem(Items.NETHERITE_INGOT))
             .offerTo(exporter, getItemPath(result) + "_smithing")
     }
 
@@ -74,6 +74,31 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
             .input(Items.CHORUS_FRUIT)
             .criterion(hasItem(input), conditionsFromItem(input))
             .offerTo(exporter, convertBetween(output, input))
+    }
+
+    private fun offer1to9Recipe(
+        exporter: Consumer<RecipeJsonProvider>,
+        input: ItemConvertible,
+        output: ItemConvertible
+    ) {
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, output, 9)
+            .input(input)
+            .criterion(hasItem(input), conditionsFromItem(input))
+            .offerTo(exporter, "${getItemPath(input)}_to_${getItemPath(output)}")
+    }
+
+    private fun offer9to1Recipe(
+        exporter: Consumer<RecipeJsonProvider>,
+        input: ItemConvertible,
+        output: ItemConvertible
+    ) {
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, output)
+            .input('X', input)
+            .criterion(hasItem(input), conditionsFromItem(input))
+            .pattern("XXX")
+            .pattern("XXX")
+            .pattern("XXX")
+            .offerTo(exporter, "${getItemPath(input)}_to_${getItemPath(output)}")
     }
 
     override fun generate(exporter: Consumer<RecipeJsonProvider>) {
@@ -109,50 +134,16 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
         offerTitaniumUpgradeRecipe(exporter, Items.NETHERITE_HOE, RecipeCategory.TOOLS, titaniumHoe)
         offerTitaniumUpgradeRecipe(exporter, Items.CROSSBOW, RecipeCategory.TOOLS, titaniumCrossbow)
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, adamantiteNugget, 9)
-            .input(adamantiteIngot)
-            .criterion("has_adamantite_ingot", conditionsFromItem(adamantiteIngot))
-            .offerTo(exporter)
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, adamantiteIngot)
-            .input('X', adamantiteNugget)
-            .criterion("has_adamantite_ingot", conditionsFromItem(adamantiteIngot))
-            .pattern("XXX")
-            .pattern("XXX")
-            .pattern("XXX")
-            .offerTo(exporter)
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, adamantiteIngot, 9)
-            .input(adamantiteBlock)
-            .criterion("has_adamantite_ingot", conditionsFromItem(adamantiteIngot))
-            .offerTo(exporter)
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, adamantiteBlock)
-            .input('X', adamantiteIngot)
-            .criterion("has_adamantite_ingot", conditionsFromItem(adamantiteIngot))
-            .pattern("XXX")
-            .pattern("XXX")
-            .pattern("XXX")
-            .offerTo(exporter)
+        offer1to9Recipe(exporter, adamantiteIngot, adamantiteNugget)
+        offer9to1Recipe(exporter, adamantiteNugget, adamantiteIngot)
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, titaniumNugget, 9)
-            .input(titaniumIngot)
-            .criterion("has_titanium_ingot", conditionsFromItem(titaniumIngot))
-            .offerTo(exporter)
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, titaniumIngot)
-            .input('X', titaniumNugget)
-            .criterion("has_titanium_ingot", conditionsFromItem(titaniumIngot))
-            .pattern("XXX")
-            .pattern("XXX")
-            .pattern("XXX")
-            .offerTo(exporter)
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, titaniumIngot, 9)
-            .input(titaniumBlock)
-            .criterion("has_titanium_ingot", conditionsFromItem(titaniumIngot))
-            .offerTo(exporter)
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, titaniumBlock)
-            .input('X', titaniumIngot)
-            .criterion("has_titanium_ingot", conditionsFromItem(titaniumIngot))
-            .pattern("XXX")
-            .pattern("XXX")
-            .pattern("XXX")
-            .offerTo(exporter)
+        offer1to9Recipe(exporter, adamantiteBlock, adamantiteIngot)
+        offer9to1Recipe(exporter, adamantiteIngot, adamantiteBlock)
+
+        offer1to9Recipe(exporter, titaniumIngot, titaniumNugget)
+        offer9to1Recipe(exporter, titaniumNugget, titaniumIngot)
+
+        offer1to9Recipe(exporter, titaniumBlock, titaniumIngot)
+        offer9to1Recipe(exporter, titaniumIngot, titaniumBlock)
     }
 }
