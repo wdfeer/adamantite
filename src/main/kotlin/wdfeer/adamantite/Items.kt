@@ -5,6 +5,7 @@ import net.fabric_extras.ranged_weapon.api.RangedConfig
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
+import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.item.*
 import net.minecraft.recipe.Ingredient
 import net.minecraft.registry.Registries
@@ -67,8 +68,7 @@ private val titaniumToolMaterial = object : ToolMaterial {
 
 val titaniumSword = SwordItem(titaniumToolMaterial, 3, -2.4f, FabricItemSettings()).register("titanium_sword")
 val titaniumShovel = ShovelItem(titaniumToolMaterial, 1.5f, -3f, FabricItemSettings()).register("titanium_shovel")
-val titaniumPickaxe =
-    PickaxeItem(titaniumToolMaterial, 1, -2.8f, FabricItemSettings()).register("titanium_pickaxe")
+val titaniumPickaxe = PickaxeItem(titaniumToolMaterial, 1, -2.8f, FabricItemSettings()).register("titanium_pickaxe")
 val titaniumAxe = AxeItem(titaniumToolMaterial, 5f, -3f, FabricItemSettings()).register("titanium_axe")
 val titaniumHoe = HoeItem(titaniumToolMaterial, -4, 0f, FabricItemSettings()).register("titanium_hoe")
 
@@ -114,16 +114,8 @@ val titaniumLeggings =
 val titaniumBoots =
     ArmorItem(titaniumArmorMaterial, ArmorItem.Type.BOOTS, FabricItemSettings()).register("titanium_boots")
 
-val adamantiteCrossbow = CustomCrossbow(
-    FabricItemSettings().maxCount(1).maxDamage(930)
-) { Ingredient.ofItems(adamantiteIngot) }.apply {
-    configure(RangedConfig(RangedConfig.CROSSBOW.pull_time - 5, RangedConfig.CROSSBOW.damage, RangedConfig.CROSSBOW.velocity))
-}.register("adamantite_crossbow")
-val titaniumCrossbow = CustomCrossbow(
-    FabricItemSettings().maxCount(1).maxDamage(930)
-) { Ingredient.ofItems(titaniumIngot) }.apply {
-    configure(RangedConfig(RangedConfig.CROSSBOW.pull_time, RangedConfig.CROSSBOW.damage + 2f, RangedConfig.CROSSBOW.velocity))
-}.register("titanium_crossbow")
+var adamantiteCrossbow: Item? = null
+var titaniumCrossbow: Item? = null
 
 val adamantiteNugget = Item(FabricItemSettings()).register("adamantite_nugget")
 val titaniumNugget = Item(FabricItemSettings()).register("titanium_nugget")
@@ -144,13 +136,11 @@ fun initItems() {
     }
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register { content: FabricItemGroupEntries ->
         content.add(adamantiteSword)
-        content.add(adamantiteCrossbow)
         content.add(adamantiteHelmet)
         content.add(adamantiteChestplate)
         content.add(adamantiteLeggings)
         content.add(adamantiteBoots)
         content.add(titaniumSword)
-        content.add(titaniumCrossbow)
         content.add(titaniumHelmet)
         content.add(titaniumChestplate)
         content.add(titaniumLeggings)
@@ -165,5 +155,29 @@ fun initItems() {
         content.add(titaniumPickaxe)
         content.add(titaniumAxe)
         content.add(titaniumHoe)
+    }
+    if (FabricLoader.getInstance().isModLoaded("ranged_weapon_api")) {
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register { content: FabricItemGroupEntries ->
+            content.add(adamantiteCrossbow)
+            content.add(titaniumCrossbow)
+        }
+        adamantiteCrossbow = CustomCrossbow(
+            FabricItemSettings().maxCount(1).maxDamage(930)
+        ) { Ingredient.ofItems(adamantiteIngot) }.apply {
+            configure(
+                RangedConfig(
+                    RangedConfig.CROSSBOW.pull_time - 5, RangedConfig.CROSSBOW.damage, RangedConfig.CROSSBOW.velocity
+                )
+            )
+        }.register("adamantite_crossbow")
+        titaniumCrossbow = CustomCrossbow(
+            FabricItemSettings().maxCount(1).maxDamage(930)
+        ) { Ingredient.ofItems(titaniumIngot) }.apply {
+            configure(
+                RangedConfig(
+                    RangedConfig.CROSSBOW.pull_time, RangedConfig.CROSSBOW.damage + 2f, RangedConfig.CROSSBOW.velocity
+                )
+            )
+        }.register("titanium_crossbow")
     }
 }

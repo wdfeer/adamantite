@@ -40,7 +40,7 @@
     "fabric-api": "*",
     "fabric-language-kotlin": "*"
   },
-  "suggests": {
-    "another-mod": "*"
+  "recommends": {
+    "ranged-weapon-api": "*"
   }
 }

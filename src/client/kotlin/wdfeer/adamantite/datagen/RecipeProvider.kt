@@ -122,7 +122,7 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
         offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_PICKAXE, RecipeCategory.TOOLS, adamantitePickaxe)
         offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_AXE, RecipeCategory.TOOLS, adamantiteAxe)
         offerAdamantiteUpgradeRecipe(exporter, Items.NETHERITE_HOE, RecipeCategory.TOOLS, adamantiteHoe)
-        offerAdamantiteUpgradeRecipe(exporter, Items.CROSSBOW, RecipeCategory.TOOLS, adamantiteCrossbow)
+        offerAdamantiteUpgradeRecipe(exporter, Items.CROSSBOW, RecipeCategory.TOOLS, adamantiteCrossbow!!)
 
         offerTitaniumUpgradeRecipe(exporter, Items.NETHERITE_HELMET, RecipeCategory.COMBAT, titaniumHelmet)
         offerTitaniumUpgradeRecipe(exporter, Items.NETHERITE_CHESTPLATE, RecipeCategory.COMBAT, titaniumChestplate)
@@ -132,7 +132,7 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
         offerTitaniumUpgradeRecipe(exporter, Items.NETHERITE_PICKAXE, RecipeCategory.TOOLS, titaniumPickaxe)
         offerTitaniumUpgradeRecipe(exporter, Items.NETHERITE_AXE, RecipeCategory.TOOLS, titaniumAxe)
         offerTitaniumUpgradeRecipe(exporter, Items.NETHERITE_HOE, RecipeCategory.TOOLS, titaniumHoe)
-        offerTitaniumUpgradeRecipe(exporter, Items.CROSSBOW, RecipeCategory.TOOLS, titaniumCrossbow)
+        offerTitaniumUpgradeRecipe(exporter, Items.CROSSBOW, RecipeCategory.TOOLS, titaniumCrossbow!!)
 
         offer1to9Recipe(exporter, adamantiteIngot, adamantiteNugget)
         offer9to1Recipe(exporter, adamantiteNugget, adamantiteIngot)
