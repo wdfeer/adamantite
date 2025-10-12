@@ -3,6 +3,7 @@ package wdfeer.adamantite.datagen
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider
 import net.minecraft.data.server.recipe.RecipeJsonProvider
+import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder
 import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder
 import net.minecraft.item.Item
@@ -107,5 +108,21 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
         offerTitaniumUpgradeRecipe(exporter, Items.NETHERITE_AXE, RecipeCategory.TOOLS, titaniumAxe)
         offerTitaniumUpgradeRecipe(exporter, Items.NETHERITE_HOE, RecipeCategory.TOOLS, titaniumHoe)
         offerTitaniumUpgradeRecipe(exporter, Items.CROSSBOW, RecipeCategory.TOOLS, titaniumCrossbow)
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, adamantiteNugget, 9)
+            .input(adamantiteIngot)
+            .offerTo(exporter)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, adamantiteIngot)
+            .input('N', adamantiteNugget)
+            .pattern("NNN\nNNN\nNNN")
+            .offerTo(exporter)
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, titaniumNugget, 9)
+            .input(titaniumIngot)
+            .offerTo(exporter)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, titaniumIngot)
+            .input('N', titaniumNugget)
+            .pattern("NNN\nNNN\nNNN")
+            .offerTo(exporter)
     }
 }
