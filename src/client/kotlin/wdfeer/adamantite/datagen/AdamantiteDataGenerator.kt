@@ -26,6 +26,8 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                 override fun generate() {
                     addDrop(deepslateAdamantiteOre, deepslateAdamantiteOre)
                     addDrop(deepslateTitaniumOre, deepslateTitaniumOre)
+                    addDrop(adamantiteBlock, adamantiteBlock)
+                    addDrop(titaniumBlock, titaniumBlock)
                 }
             }
         }
@@ -34,8 +36,9 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
             object : FabricModelProvider(dataOutput) {
                 override fun generateBlockStateModels(generator: BlockStateModelGenerator) {
                     generator.registerSimpleCubeAll(deepslateAdamantiteOre)
-
                     generator.registerSimpleCubeAll(deepslateTitaniumOre)
+                    generator.registerSimpleCubeAll(adamantiteBlock)
+                    generator.registerSimpleCubeAll(titaniumBlock)
                 }
 
                 override fun generateItemModels(generator: ItemModelGenerator) {
@@ -73,11 +76,15 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
         pack.addProvider { dataOutput, registriesFuture ->
             object : FabricTagProvider<Block>(dataOutput, RegistryKeys.BLOCK, registriesFuture) {
                 override fun configure(lookup: RegistryWrapper.WrapperLookup?) {
-                    getTagBuilder(BlockTags.PICKAXE_MINEABLE).add(Adamantite.id("deepslate_adamantite_ore"))
-                    getTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL).add(Adamantite.id("deepslate_adamantite_ore"))
-
-                    getTagBuilder(BlockTags.PICKAXE_MINEABLE).add(Adamantite.id("deepslate_titanium_ore"))
-                    getTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL).add(Adamantite.id("deepslate_titanium_ore"))
+                    listOf(
+                        "deepslate_adamantite_ore",
+                        "deepslate_titanium_ore",
+                        "adamantite_block",
+                        "titanium_block"
+                    ).map { Adamantite.id(it) }.forEach {
+                        getTagBuilder(BlockTags.PICKAXE_MINEABLE).add(it)
+                        getTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL).add(it)
+                    }
                 }
             }
         }
@@ -114,6 +121,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
             object : FabricLanguageProvider(dataOutput, "en_us") {
                 override fun generateTranslations(buffer: TranslationBuilder) {
                     buffer.add(deepslateAdamantiteOre, "Deepslate Adamantite Ore")
+                    buffer.add(adamantiteBlock, "Adamantite Block")
                     buffer.add(adamantiteIngot, "Adamantite Ingot")
                     buffer.add(adamantiteNugget, "Adamantite Nugget")
                     buffer.add(adamantiteSword, "Adamantite Sword")
@@ -128,6 +136,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                     buffer.add(adamantiteCrossbow, "Adamantite Crossbow")
 
                     buffer.add(deepslateTitaniumOre, "Deepslate Titanium Ore")
+                    buffer.add(titaniumBlock, "Titanium Block")
                     buffer.add(titaniumIngot, "Titanium Ingot")
                     buffer.add(titaniumNugget, "Titanium Nugget")
                     buffer.add(titaniumSword, "Titanium Sword")
