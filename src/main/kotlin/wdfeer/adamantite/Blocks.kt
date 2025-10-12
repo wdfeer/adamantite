@@ -12,15 +12,24 @@ import net.minecraft.item.ItemGroups
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 
-val deepslateAdamantiteOre = Block(FabricBlockSettings.create().hardness(Blocks.DEEPSLATE_DIAMOND_ORE.hardness)).register("deepslate_adamantite_ore")
-val deepslateTitaniumOre = Block(FabricBlockSettings.create().hardness(Blocks.DEEPSLATE_DIAMOND_ORE.hardness)).register("deepslate_titanium_ore")
+val deepslateAdamantiteOre = Block(
+    FabricBlockSettings.create().hardness(Blocks.DEEPSLATE_DIAMOND_ORE.hardness)
+).register("deepslate_adamantite_ore")
+val deepslateTitaniumOre = Block(
+    FabricBlockSettings.create().hardness(Blocks.DEEPSLATE_DIAMOND_ORE.hardness)
+).register("deepslate_titanium_ore")
 
-private fun Block.register(name: String, shouldRegisterItem: Boolean = true): Block {
+val adamantiteBlock = Block(
+    FabricBlockSettings.create().hardness(Blocks.NETHERITE_BLOCK.hardness)
+).register("adamantite_block")
+val titaniumBlock = Block(
+    FabricBlockSettings.create().hardness(Blocks.NETHERITE_BLOCK.hardness)
+).register("titanium_block")
+
+private fun Block.register(name: String): Block {
     val id = Adamantite.id(name)
-    if (shouldRegisterItem) {
-        val blockItem = BlockItem(this, FabricItemSettings())
-        Registry.register<Item?, BlockItem?>(Registries.ITEM, id, blockItem)
-    }
+    val blockItem = BlockItem(this, FabricItemSettings())
+    Registry.register<Item?, BlockItem?>(Registries.ITEM, id, blockItem)
     return Registry.register(Registries.BLOCK, id, this)
 }
 
@@ -28,5 +37,9 @@ fun initBlocks() {
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register { content: FabricItemGroupEntries ->
         content.add(deepslateAdamantiteOre)
         content.add(deepslateTitaniumOre)
+    }
+    ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register { content: FabricItemGroupEntries ->
+        content.add(adamantiteBlock)
+        content.add(titaniumBlock)
     }
 }
