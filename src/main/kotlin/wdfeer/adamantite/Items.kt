@@ -125,6 +125,9 @@ val titaniumCrossbow = CustomCrossbow(
     configure(RangedConfig(RangedConfig.CROSSBOW.pull_time, RangedConfig.CROSSBOW.damage + 2f, RangedConfig.CROSSBOW.velocity))
 }.register("titanium_crossbow")
 
+val adamantiteNugget = Item(FabricItemSettings()).register("adamantite_nugget")
+val titaniumNugget = Item(FabricItemSettings()).register("titanium_nugget")
+
 private fun <T : Item> T.register(name: String): T {
     val id = Adamantite.id(name)
     return Registry.register(Registries.ITEM, id, this)
@@ -133,8 +136,10 @@ private fun <T : Item> T.register(name: String): T {
 fun initItems() {
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register { content: FabricItemGroupEntries ->
         content.add(adamantiteIngot)
+        content.add(adamantiteNugget)
         content.add(adamantiteUpgradeTemplate)
         content.add(titaniumIngot)
+        content.add(titaniumNugget)
         content.add(titaniumUpgradeTemplate)
     }
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register { content: FabricItemGroupEntries ->
