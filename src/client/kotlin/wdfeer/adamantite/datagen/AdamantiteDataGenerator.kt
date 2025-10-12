@@ -40,6 +40,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
 
                 override fun generateItemModels(generator: ItemModelGenerator) {
                     generator.register(adamantiteIngot, Models.GENERATED)
+                    generator.register(adamantiteNugget, Models.GENERATED)
                     generator.register(adamantiteUpgradeTemplate, Models.GENERATED)
                     generator.register(adamantiteSword, Models.HANDHELD)
                     generator.register(adamantiteShovel, Models.HANDHELD)
@@ -52,6 +53,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                     generator.registerArmor(adamantiteBoots)
 
                     generator.register(titaniumIngot, Models.GENERATED)
+                    generator.register(titaniumNugget, Models.GENERATED)
                     generator.register(titaniumUpgradeTemplate, Models.GENERATED)
                     generator.register(titaniumSword, Models.HANDHELD)
                     generator.register(titaniumShovel, Models.HANDHELD)
@@ -113,6 +115,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                 override fun generateTranslations(buffer: TranslationBuilder) {
                     buffer.add(deepslateAdamantiteOre, "Deepslate Adamantite Ore")
                     buffer.add(adamantiteIngot, "Adamantite Ingot")
+                    buffer.add(adamantiteNugget, "Adamantite Nugget")
                     buffer.add(adamantiteSword, "Adamantite Sword")
                     buffer.add(adamantiteShovel, "Adamantite Shovel")
                     buffer.add(adamantitePickaxe, "Adamantite Pickaxe")
@@ -126,6 +129,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
 
                     buffer.add(deepslateTitaniumOre, "Deepslate Titanium Ore")
                     buffer.add(titaniumIngot, "Titanium Ingot")
+                    buffer.add(titaniumNugget, "Titanium Nugget")
                     buffer.add(titaniumSword, "Titanium Sword")
                     buffer.add(titaniumShovel, "Titanium Shovel")
                     buffer.add(titaniumPickaxe, "Titanium Pickaxe")
