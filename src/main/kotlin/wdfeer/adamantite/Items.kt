@@ -6,6 +6,8 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
 import net.fabricmc.loader.api.FabricLoader
+import net.minecraft.entity.effect.StatusEffectInstance
+import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.item.*
 import net.minecraft.recipe.Ingredient
 import net.minecraft.registry.Registries
@@ -120,6 +122,31 @@ var titaniumCrossbow: Item? = null
 val adamantiteNugget = Item(FabricItemSettings()).register("adamantite_nugget")
 val titaniumNugget = Item(FabricItemSettings()).register("titanium_nugget")
 
+val adamantiteGildedApple = Item(
+    FabricItemSettings().food(
+        FoodComponent.Builder()
+            .hunger(4)
+            .saturationModifier(1.2f)
+            .statusEffect(StatusEffectInstance(StatusEffects.RESISTANCE, 20 * 60, 0), 1.0F)
+            .statusEffect(StatusEffectInstance(StatusEffects.REGENERATION, 20 * 5, 1), 1.0F)
+            .statusEffect(StatusEffectInstance(StatusEffects.STRENGTH, 20 * 60 * 4, 1), 1.0F)
+            .alwaysEdible()
+            .build()
+    )
+).register("adamantite_gilded_apple")
+val titaniumGildedApple = Item(
+    FabricItemSettings().food(
+        FoodComponent.Builder()
+            .hunger(4)
+            .saturationModifier(1.2f)
+            .statusEffect(StatusEffectInstance(StatusEffects.RESISTANCE, 20 * 60, 0), 1.0F)
+            .statusEffect(StatusEffectInstance(StatusEffects.REGENERATION, 20 * 5, 1), 1.0F)
+            .statusEffect(StatusEffectInstance(StatusEffects.HASTE, 20 * 60 * 4, 1), 1.0F)
+            .alwaysEdible()
+            .build()
+    )
+).register("titanium_gilded_apple")
+
 private fun <T : Item> T.register(name: String): T {
     val id = Adamantite.id(name)
     return Registry.register(Registries.ITEM, id, this)
@@ -156,6 +183,11 @@ fun initItems() {
         content.add(titaniumAxe)
         content.add(titaniumHoe)
     }
+    ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register { content: FabricItemGroupEntries ->
+        content.add(adamantiteGildedApple)
+        content.add(titaniumGildedApple)
+    }
+
     if (FabricLoader.getInstance().isModLoaded("ranged_weapon_api")) {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register { content: FabricItemGroupEntries ->
             content.add(adamantiteCrossbow)
