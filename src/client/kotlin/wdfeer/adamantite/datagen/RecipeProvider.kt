@@ -145,5 +145,16 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
 
         offer1to9Recipe(exporter, titaniumBlock, titaniumIngot)
         offer9to1Recipe(exporter, titaniumIngot, titaniumBlock)
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, adamantiteGildedApple, 1)
+            .input(Items.APPLE)
+            .input(adamantiteNugget)
+            .criterion(hasItem(adamantiteNugget), conditionsFromItem(adamantiteNugget))
+            .offerTo(exporter)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, titaniumGildedApple, 1)
+            .input(Items.APPLE)
+            .input(titaniumNugget)
+            .criterion(hasItem(titaniumNugget), conditionsFromItem(titaniumNugget))
+            .offerTo(exporter)
     }
 }
