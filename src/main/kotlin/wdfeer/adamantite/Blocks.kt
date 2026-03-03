@@ -15,6 +15,7 @@ import net.minecraft.registry.Registry
 val deepslateAdamantiteOre = Block(
     FabricBlockSettings.create().hardness(Blocks.DEEPSLATE_DIAMOND_ORE.hardness)
 ).register("deepslate_adamantite_ore")
+
 val deepslateTitaniumOre = Block(
     FabricBlockSettings.create().hardness(Blocks.DEEPSLATE_DIAMOND_ORE.hardness)
 ).register("deepslate_titanium_ore")
@@ -22,6 +23,7 @@ val deepslateTitaniumOre = Block(
 val adamantiteBlock = Block(
     FabricBlockSettings.create().hardness(Blocks.NETHERITE_BLOCK.hardness)
 ).register("adamantite_block")
+
 val titaniumBlock = Block(
     FabricBlockSettings.create().hardness(Blocks.NETHERITE_BLOCK.hardness)
 ).register("titanium_block")

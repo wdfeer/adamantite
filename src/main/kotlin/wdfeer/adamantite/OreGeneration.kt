@@ -83,6 +83,7 @@ private fun tryGenerateVein(world: ServerWorld, chunk: ChunkPos) {
             (Config.minHeight..Config.maxHeight).random(),
             chunk.z * 16 + Random.nextInt(16)
         )
+
     if (world.getBlockState(pos).block == Blocks.DEEPSLATE) {
         val extraCount = Random.nextInt(3)
         world.setBlockState(pos, ore.defaultState)

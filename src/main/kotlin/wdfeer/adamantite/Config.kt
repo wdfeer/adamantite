@@ -12,11 +12,13 @@ object Config {
     fun load() {
         val path = FabricLoader.getInstance().configDir.resolve("adamantite.cfg")
         val file = path.toFile()
+
         if (file.exists()) {
             val lines = file.readLines()
             val map: Map<String, String> = lines.map { line ->
                 line.split("=").map { it.trim() }
             }.associate { it[0] to it[1] }
+
             enableGeneration = map["enableGeneration"]?.toBooleanStrictOrNull() ?: run {
                 Adamantite.logger.error("Config \"enableGeneration\" property invalid! Using default.")
                 enableGeneration
