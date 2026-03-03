@@ -17,6 +17,8 @@ object Config {
             val lines = file.readLines()
             val map: Map<String, String> = lines.map { line ->
                 line.split("=").map { it.trim() }
+            }.filter {
+                it.size >= 2
             }.associate { it[0] to it[1] }
 
             enableGeneration = map["enableGeneration"]?.toBooleanStrictOrNull() ?: run {
