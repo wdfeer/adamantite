@@ -1,6 +1,5 @@
 package wdfeer.adamantite
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
@@ -30,8 +29,8 @@ val titaniumBlock = Block(
 
 private fun Block.register(name: String): Block {
     val id = Adamantite.id(name)
-    val blockItem = BlockItem(this, FabricItemSettings())
-    Registry.register<Item?, BlockItem?>(Registries.ITEM, id, blockItem)
+    val blockItem = BlockItem(this, Item.Settings())
+    Registry.register(Registries.ITEM, id, blockItem)
     return Registry.register(Registries.BLOCK, id, this)
 }
 

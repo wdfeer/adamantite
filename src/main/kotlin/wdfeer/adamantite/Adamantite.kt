@@ -8,7 +8,8 @@ import org.slf4j.LoggerFactory
 object Adamantite : ModInitializer {
     val logger: Logger = LoggerFactory.getLogger("adamantite")
 
-    fun id(name: String): Identifier = Identifier("adamantite", name)
+    fun id(name: String): Identifier =
+        Identifier.of("adamantite", name)
 
     override fun onInitialize() {
         Config.load()
