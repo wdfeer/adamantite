@@ -2,7 +2,6 @@ package wdfeer.adamantite
 
 import net.fabric_extras.ranged_weapon.api.CustomCrossbow
 import net.fabric_extras.ranged_weapon.api.RangedConfig
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
 import net.fabricmc.loader.api.FabricLoader
@@ -51,16 +50,16 @@ private val adamantiteToolMaterial = object : ToolMaterial {
     override fun getInverseTag(): TagKey<Block?>? {
         TODO("Not yet implemented")
     }
-//    override fun getMiningLevel(): Int = ToolMaterials.NETHERITE.miningLevel // TODO: define mining level somewhere else
+
+    //    override fun getMiningLevel(): Int = ToolMaterials.NETHERITE.miningLevel // TODO: define mining level somewhere else
     override fun getEnchantability(): Int = ToolMaterials.NETHERITE.enchantability + 1
     override fun getRepairIngredient(): Ingredient = Ingredient.ofItems(adamantiteIngot)
 }
-val adamantiteSword = SwordItem(adamantiteToolMaterial, 3, -2.4f, Item.Settings()).register("adamantite_sword")
-val adamantiteShovel = ShovelItem(adamantiteToolMaterial, 1.5f, -3f, Item.Settings()).register("adamantite_shovel")
-val adamantitePickaxe =
-    PickaxeItem(adamantiteToolMaterial, 1, -2.8f, Item.Settings()).register("adamantite_pickaxe")
-val adamantiteAxe = AxeItem(adamantiteToolMaterial, 5f, -3f, Item.Settings()).register("adamantite_axe")
-val adamantiteHoe = HoeItem(adamantiteToolMaterial, -4, 0f, Item.Settings()).register("adamantite_hoe")
+val adamantiteSword = SwordItem(adamantiteToolMaterial, Item.Settings()).register("adamantite_sword")
+val adamantiteShovel = ShovelItem(adamantiteToolMaterial, Item.Settings()).register("adamantite_shovel")
+val adamantitePickaxe = PickaxeItem(adamantiteToolMaterial, Item.Settings()).register("adamantite_pickaxe")
+val adamantiteAxe = AxeItem(adamantiteToolMaterial, Item.Settings()).register("adamantite_axe")
+val adamantiteHoe = HoeItem(adamantiteToolMaterial, Item.Settings()).register("adamantite_hoe")
 
 // Titanium Tools
 private val titaniumToolMaterial = object : ToolMaterial {
@@ -70,15 +69,16 @@ private val titaniumToolMaterial = object : ToolMaterial {
     override fun getInverseTag(): TagKey<Block?>? {
         TODO("Not yet implemented")
     }
-//    override fun getMiningLevel(): Int = ToolMaterials.NETHERITE.miningLevel  // TODO: define mining level somewhere else
+
+    //    override fun getMiningLevel(): Int = ToolMaterials.NETHERITE.miningLevel  // TODO: define mining level somewhere else
     override fun getEnchantability(): Int = ToolMaterials.NETHERITE.enchantability + 1
     override fun getRepairIngredient(): Ingredient = Ingredient.ofItems(titaniumIngot)
 }
-val titaniumSword = SwordItem(titaniumToolMaterial, 3, -2.4f, Item.Settings()).register("titanium_sword")
-val titaniumShovel = ShovelItem(titaniumToolMaterial, 1.5f, -3f, Item.Settings()).register("titanium_shovel")
-val titaniumPickaxe = PickaxeItem(titaniumToolMaterial, 1, -2.8f, Item.Settings()).register("titanium_pickaxe")
-val titaniumAxe = AxeItem(titaniumToolMaterial, 5f, -3f, Item.Settings()).register("titanium_axe")
-val titaniumHoe = HoeItem(titaniumToolMaterial, -4, 0f, Item.Settings()).register("titanium_hoe")
+val titaniumSword = SwordItem(titaniumToolMaterial, Item.Settings()).register("titanium_sword")
+val titaniumShovel = ShovelItem(titaniumToolMaterial, Item.Settings()).register("titanium_shovel")
+val titaniumPickaxe = PickaxeItem(titaniumToolMaterial, Item.Settings()).register("titanium_pickaxe")
+val titaniumAxe = AxeItem(titaniumToolMaterial, Item.Settings()).register("titanium_axe")
+val titaniumHoe = HoeItem(titaniumToolMaterial, Item.Settings()).register("titanium_hoe")
 
 // Adamantite Armor
 private val adamantiteArmorMaterial = object : ArmorMaterial {
@@ -119,8 +119,7 @@ val titaniumChestplate = ArmorItem(
 ).register("titanium_chestplate")
 val titaniumLeggings =
     ArmorItem(titaniumArmorMaterial, ArmorItem.Type.LEGGINGS, Item.Settings()).register("titanium_leggings")
-val titaniumBoots =
-    ArmorItem(titaniumArmorMaterial, ArmorItem.Type.BOOTS, Item.Settings()).register("titanium_boots")
+val titaniumBoots = ArmorItem(titaniumArmorMaterial, ArmorItem.Type.BOOTS, Item.Settings()).register("titanium_boots")
 
 // only assign crossbows on init, if ranged_weapon_api loaded
 var adamantiteCrossbow: Item? = null
@@ -175,23 +174,19 @@ fun initItems() {
         }
 
         adamantiteCrossbow = CustomCrossbow(
-            Item.Settings().maxCount(1).maxDamage(930)
-        ) { Ingredient.ofItems(adamantiteIngot) }.apply {
-            configure(
-                RangedConfig(
-                    RangedConfig.CROSSBOW.pull_time - 5, RangedConfig.CROSSBOW.damage, RangedConfig.CROSSBOW.velocity
-                )
+            Item.Settings().maxCount(1).maxDamage(930), RangedConfig(
+                RangedConfig.CROSSBOW.damage,
+                RangedConfig.CROSSBOW.pull_time_bonus - 5,
+                RangedConfig.CROSSBOW.velocity_bonus
             )
-        }.register("adamantite_crossbow")
+        ) { Ingredient.ofItems(adamantiteIngot) }.register("adamantite_crossbow")
 
         titaniumCrossbow = CustomCrossbow(
-            Item.Settings().maxCount(1).maxDamage(930)
-        ) { Ingredient.ofItems(titaniumIngot) }.apply {
-            configure(
-                RangedConfig(
-                    RangedConfig.CROSSBOW.pull_time, RangedConfig.CROSSBOW.damage + 2f, RangedConfig.CROSSBOW.velocity
-                )
+            Item.Settings().maxCount(1).maxDamage(930), RangedConfig(
+                RangedConfig.CROSSBOW.damage + 2f,
+                RangedConfig.CROSSBOW.pull_time_bonus,
+                RangedConfig.CROSSBOW.velocity_bonus
             )
-        }.register("titanium_crossbow")
+        ) { Ingredient.ofItems(titaniumIngot) }.register("titanium_crossbow")
     }
 }
