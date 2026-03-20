@@ -21,8 +21,8 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
     override fun onInitializeDataGenerator(generator: FabricDataGenerator) {
         val pack = generator.createPack()
 
-        pack.addProvider { dataOutput, _ ->
-            object : FabricBlockLootTableProvider(dataOutput) {
+        pack.addProvider { dataOutput, lookup ->
+            object : FabricBlockLootTableProvider(dataOutput, lookup) {
                 override fun generate() {
                     addDrop(deepslateAdamantiteOre, deepslateAdamantiteOre)
                     addDrop(deepslateTitaniumOre, deepslateTitaniumOre)
@@ -117,9 +117,12 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
             }
         }
 
-        pack.addProvider { dataOutput, _ ->
-            object : FabricLanguageProvider(dataOutput, "en_us") {
-                override fun generateTranslations(buffer: TranslationBuilder) {
+        pack.addProvider { dataOutput, lookup ->
+            object : FabricLanguageProvider(dataOutput, lookup) {
+                override fun generateTranslations(
+                    lookup: RegistryWrapper.WrapperLookup,
+                    buffer: TranslationBuilder
+                ) {
                     buffer.add(deepslateAdamantiteOre, "Deepslate Adamantite Ore")
                     buffer.add(adamantiteBlock, "Adamantite Block")
                     buffer.add(adamantiteIngot, "Adamantite Ingot")
