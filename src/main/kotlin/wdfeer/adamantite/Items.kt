@@ -53,7 +53,6 @@ fun initItems() {
         content.add(titaniumUpgradeTemplate)
     }
 
-    initArmorMaterials()
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register { content: FabricItemGroupEntries ->
         content.add(adamantiteSword)
         content.add(adamantiteHelmet)
