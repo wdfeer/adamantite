@@ -2,7 +2,7 @@ package wdfeer.adamantite.datagen
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider
-import net.minecraft.data.server.recipe.RecipeJsonProvider
+import net.minecraft.data.server.recipe.RecipeExporter
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder
 import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder
@@ -11,12 +11,16 @@ import net.minecraft.item.ItemConvertible
 import net.minecraft.item.Items
 import net.minecraft.recipe.Ingredient
 import net.minecraft.recipe.book.RecipeCategory
+import net.minecraft.registry.RegistryWrapper
 import wdfeer.adamantite.*
-import java.util.function.Consumer
+import java.util.concurrent.CompletableFuture
 
-class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOutput) {
+class RecipeProvider(
+    dataOutput: FabricDataOutput,
+    registriesFuture: CompletableFuture<RegistryWrapper.WrapperLookup>
+) : FabricRecipeProvider(dataOutput, registriesFuture) {
     private fun offerAdamantiteUpgradeRecipe(
-        exporter: Consumer<RecipeJsonProvider>,
+        exporter: RecipeExporter,
         input: Item,
         category: RecipeCategory,
         result: Item
@@ -32,7 +36,7 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
     }
 
     private fun offerTitaniumUpgradeRecipe(
-        exporter: Consumer<RecipeJsonProvider>,
+        exporter: RecipeExporter,
         input: Item,
         category: RecipeCategory,
         result: Item
@@ -47,7 +51,7 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
             .offerTo(exporter, getItemPath(result) + "_smithing")
     }
 
-    private fun offerSmeltingBlasting(exporter: Consumer<RecipeJsonProvider>, input: ItemConvertible, output: Item) {
+    private fun offerSmeltingBlasting(exporter: RecipeExporter, input: ItemConvertible, output: Item) {
         offerSmelting(
             exporter,
             listOf(input),
@@ -68,7 +72,7 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
         )
     }
 
-    private fun offerChorusConversionRecipe(exporter: Consumer<RecipeJsonProvider>, input: Item, output: Item) {
+    private fun offerChorusConversionRecipe(exporter: RecipeExporter, input: Item, output: Item) {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, output, 1)
             .input(input)
             .input(Items.CHORUS_FRUIT)
@@ -77,7 +81,7 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
     }
 
     private fun offer1to9Recipe(
-        exporter: Consumer<RecipeJsonProvider>,
+        exporter: RecipeExporter,
         input: ItemConvertible,
         output: ItemConvertible
     ) {
@@ -88,7 +92,7 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
     }
 
     private fun offer9to1Recipe(
-        exporter: Consumer<RecipeJsonProvider>,
+        exporter: RecipeExporter,
         input: ItemConvertible,
         output: ItemConvertible
     ) {
@@ -101,7 +105,7 @@ class RecipeProvider(dataOutput: FabricDataOutput) : FabricRecipeProvider(dataOu
             .offerTo(exporter, "${getItemPath(input)}_to_${getItemPath(output)}")
     }
 
-    override fun generate(exporter: Consumer<RecipeJsonProvider>) {
+    override fun generate(exporter: RecipeExporter) {
         offerSmeltingBlasting(exporter, deepslateAdamantiteOre, adamantiteIngot)
         offerSmeltingBlasting(exporter, deepslateTitaniumOre, titaniumIngot)
 

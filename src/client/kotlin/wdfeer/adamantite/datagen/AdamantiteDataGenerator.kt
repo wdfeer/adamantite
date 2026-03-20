@@ -71,7 +71,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
             }
         }
 
-        pack.addProvider { dataOutput, _ -> RecipeProvider(dataOutput) }
+        pack.addProvider { dataOutput, lookup -> RecipeProvider(dataOutput, lookup) }
 
         pack.addProvider { dataOutput, registriesFuture ->
             object : FabricTagProvider<Block>(dataOutput, RegistryKeys.BLOCK, registriesFuture) {

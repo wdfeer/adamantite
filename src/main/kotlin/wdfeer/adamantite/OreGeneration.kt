@@ -4,7 +4,6 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.block.Block
 import net.minecraft.block.Blocks
 import net.minecraft.datafixer.DataFixTypes
-import net.minecraft.datafixer.fix.DropInvalidSignDatafixDataFix
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.registry.RegistryWrapper
 import net.minecraft.server.MinecraftServer
