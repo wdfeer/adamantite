@@ -3,7 +3,10 @@ package wdfeer.adamantite
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.block.Block
 import net.minecraft.block.Blocks
+import net.minecraft.datafixer.DataFixTypes
+import net.minecraft.datafixer.fix.DropInvalidSignDatafixDataFix
 import net.minecraft.nbt.NbtCompound
+import net.minecraft.registry.RegistryWrapper
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
@@ -20,7 +23,10 @@ private data class AdamantiteGenerationState(var generated: MutableSet<ChunkPos>
         generated = tag.keys.map { it.split(",").map { n -> n.toInt() } }.map { ChunkPos(it[0], it[1]) }.toMutableSet()
     }
 
-    override fun writeNbt(nbt: NbtCompound): NbtCompound {
+    override fun writeNbt(
+        nbt: NbtCompound,
+        registryLookup: RegistryWrapper.WrapperLookup
+    ): NbtCompound {
         generated.forEach {
             nbt.putByte("${it.x},${it.z}", 0)
         }
@@ -43,9 +49,12 @@ private fun tick(server: MinecraftServer) {
     val validPlayers = world.players.filter { it.isAlive && it.interactionManager.gameMode != GameMode.SPECTATOR }
     if (validPlayers.isEmpty()) return
 
-    val state = world.persistentStateManager.getOrCreate(
-        ::AdamantiteGenerationState,
-        { AdamantiteGenerationState(mutableSetOf()) },
+    val state = world.persistentStateManager.getOrCreate<AdamantiteGenerationState>(
+        PersistentState.Type(
+            { AdamantiteGenerationState(mutableSetOf()) },
+            { nbt, _ -> AdamantiteGenerationState(nbt) },
+            DataFixTypes.CHUNK
+        ),
         ADAMANTITE_GENERATION_STATE_ID
     )
 
