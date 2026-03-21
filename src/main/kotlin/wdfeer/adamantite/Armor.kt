@@ -5,6 +5,7 @@ import net.minecraft.item.ArmorMaterial
 import net.minecraft.item.ArmorMaterial.*
 import net.minecraft.item.ArmorMaterials
 import net.minecraft.item.Item
+import net.minecraft.item.Items
 import net.minecraft.recipe.Ingredient
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
@@ -14,6 +15,14 @@ import net.minecraft.sound.SoundEvents
 import java.util.function.Supplier
 
 fun initArmor() = Unit // inits this file
+
+private const val maxDamageMultiplier = 37 // same as netherite
+private fun armorItem(material: RegistryEntry<ArmorMaterial>, type: ArmorItem.Type): ArmorItem =
+    ArmorItem(
+        material, type, Item.Settings().maxDamage(
+            type.getMaxDamage(maxDamageMultiplier)
+        )
+    )
 
 // === Adamantite Armor ===
 
@@ -26,13 +35,11 @@ private val adamantite = registerMaterial(
     ArmorMaterials.NETHERITE.value().toughness + 1,
     ArmorMaterials.NETHERITE.value().knockbackResistance
 )
-// FIXME: non-damageable for some reason
-val adamantiteHelmet = ArmorItem(adamantite, ArmorItem.Type.HELMET, Item.Settings()).register("adamantite_helmet")
-val adamantiteChestplate = ArmorItem(
-    adamantite, ArmorItem.Type.CHESTPLATE, Item.Settings()
-).register("adamantite_chestplate")
-val adamantiteLeggings = ArmorItem(adamantite, ArmorItem.Type.LEGGINGS, Item.Settings()).register("adamantite_leggings")
-val adamantiteBoots = ArmorItem(adamantite, ArmorItem.Type.BOOTS, Item.Settings()).register("adamantite_boots")
+
+val adamantiteHelmet = armorItem(adamantite, ArmorItem.Type.HELMET).register("adamantite_helmet")
+val adamantiteChestplate = armorItem(adamantite, ArmorItem.Type.CHESTPLATE).register("adamantite_chestplate")
+val adamantiteLeggings = armorItem(adamantite, ArmorItem.Type.LEGGINGS).register("adamantite_leggings")
+val adamantiteBoots = armorItem(adamantite, ArmorItem.Type.BOOTS).register("adamantite_boots")
 
 // === Titanium Armor ===
 private val titanium = registerMaterial(
@@ -44,15 +51,15 @@ private val titanium = registerMaterial(
     ArmorMaterials.NETHERITE.value().toughness + 1,
     ArmorMaterials.NETHERITE.value().knockbackResistance
 )
-// FIXME: non-damageable for some reason
+
 val titaniumHelmet =
-    ArmorItem(titanium, ArmorItem.Type.HELMET, Item.Settings()).register("titanium_helmet")
-val titaniumChestplate = ArmorItem(
-    titanium, ArmorItem.Type.CHESTPLATE, Item.Settings()
+    armorItem(titanium, ArmorItem.Type.HELMET).register("titanium_helmet")
+val titaniumChestplate = armorItem(
+    titanium, ArmorItem.Type.CHESTPLATE
 ).register("titanium_chestplate")
 val titaniumLeggings =
-    ArmorItem(titanium, ArmorItem.Type.LEGGINGS, Item.Settings()).register("titanium_leggings")
-val titaniumBoots = ArmorItem(titanium, ArmorItem.Type.BOOTS, Item.Settings()).register("titanium_boots")
+    armorItem(titanium, ArmorItem.Type.LEGGINGS).register("titanium_leggings")
+val titaniumBoots = armorItem(titanium, ArmorItem.Type.BOOTS).register("titanium_boots")
 
 private fun registerMaterial(
     id: String,
