@@ -23,6 +23,7 @@ fun initCrossbows() {
         adamantiteCrossbow = CustomCrossbow(
             Item.Settings().maxCount(1).maxDamage(930), RangedConfig(
                 RangedConfig.CROSSBOW.damage,
+                // FIXME: -3.75 sec pull time
                 RangedConfig.CROSSBOW.pull_time_bonus - 5,
                 RangedConfig.CROSSBOW.velocity_bonus
             )
