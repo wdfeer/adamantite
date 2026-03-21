@@ -21,10 +21,9 @@ private val adamantite = registerMaterial(
     ArmorMaterials.NETHERITE.value().defense,
     ArmorMaterials.NETHERITE.value().enchantability + 1,
     SoundEvents.ITEM_ARMOR_EQUIP_IRON,
-    Supplier { Ingredient.ofItems(adamantiteIngot) },
+    { Ingredient.ofItems(adamantiteIngot) },
     ArmorMaterials.NETHERITE.value().toughness + 1,
-    ArmorMaterials.NETHERITE.value().knockbackResistance,
-    false
+    ArmorMaterials.NETHERITE.value().knockbackResistance
 )
 val adamantiteHelmet = ArmorItem(adamantite, ArmorItem.Type.HELMET, Item.Settings()).register("adamantite_helmet")
 val adamantiteChestplate = ArmorItem(
@@ -39,10 +38,9 @@ private val titanium = registerMaterial(
     ArmorMaterials.NETHERITE.value().defense,
     ArmorMaterials.NETHERITE.value().enchantability + 1,
     SoundEvents.ITEM_ARMOR_EQUIP_IRON,
-    Supplier { Ingredient.ofItems(titaniumIngot) },
+    { Ingredient.ofItems(titaniumIngot) },
     ArmorMaterials.NETHERITE.value().toughness + 1,
-    ArmorMaterials.NETHERITE.value().knockbackResistance,
-    false
+    ArmorMaterials.NETHERITE.value().knockbackResistance
 )
 val titaniumHelmet =
     ArmorItem(titanium, ArmorItem.Type.HELMET, Item.Settings()).register("titanium_helmet")
@@ -61,7 +59,6 @@ fun registerMaterial(
     repairIngredientSupplier: Supplier<Ingredient>,
     toughness: Float,
     knockbackResistance: Float,
-    dyeable: Boolean
 ): RegistryEntry<ArmorMaterial> {
     val layers = listOf<Layer?>(
         // The ID of the texture layer, the suffix, and whether the layer is dyeable.
