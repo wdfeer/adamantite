@@ -38,7 +38,7 @@ private object AdamantiteToolMaterial : ToolMaterial {
     override fun getAttackDamage(): Float = ToolMaterials.NETHERITE.attackDamage + 1
     override fun getInverseTag(): TagKey<Block> {
         // blocks requiring a higher mining level
-        return BlockTags.AIR
+        return BlockTags.INCORRECT_FOR_NETHERITE_TOOL
     }
     override fun getEnchantability(): Int = ToolMaterials.NETHERITE.enchantability + 1
     override fun getRepairIngredient(): Ingredient = Ingredient.ofItems(adamantiteIngot)
@@ -58,7 +58,7 @@ private object TitaniumToolMaterial : ToolMaterial {
     override fun getAttackDamage(): Float = ToolMaterials.NETHERITE.attackDamage + 1
     override fun getInverseTag(): TagKey<Block?>? {
         // blocks requiring a higher mining level
-        return BlockTags.AIR
+        return BlockTags.INCORRECT_FOR_NETHERITE_TOOL
     }
     override fun getEnchantability(): Int = ToolMaterials.NETHERITE.enchantability + 1
     override fun getRepairIngredient(): Ingredient = Ingredient.ofItems(titaniumIngot)
