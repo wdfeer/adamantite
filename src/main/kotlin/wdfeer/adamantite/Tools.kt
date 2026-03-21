@@ -13,6 +13,7 @@ import net.minecraft.item.SwordItem
 import net.minecraft.item.ToolMaterial
 import net.minecraft.item.ToolMaterials
 import net.minecraft.recipe.Ingredient
+import net.minecraft.registry.tag.BlockTags
 import net.minecraft.registry.tag.TagKey
 
 fun initTools() {
@@ -35,10 +36,10 @@ private val adamantiteToolMaterial = object : ToolMaterial {
     override fun getDurability(): Int = ToolMaterials.NETHERITE.durability
     override fun getMiningSpeedMultiplier(): Float = ToolMaterials.NETHERITE.miningSpeedMultiplier + 1
     override fun getAttackDamage(): Float = ToolMaterials.NETHERITE.attackDamage + 1
-    override fun getInverseTag(): TagKey<Block?>? {
-        TODO("Not yet implemented")
+    override fun getInverseTag(): TagKey<Block> {
+        // blocks requiring a higher mining level
+        return BlockTags.AIR
     }
-    //override fun getMiningLevel(): Int = ToolMaterials.NETHERITE.miningLevel // TODO: define mining level somewhere else
     override fun getEnchantability(): Int = ToolMaterials.NETHERITE.enchantability + 1
     override fun getRepairIngredient(): Ingredient = Ingredient.ofItems(adamantiteIngot)
 }
@@ -55,10 +56,9 @@ private val titaniumToolMaterial = object : ToolMaterial {
     override fun getMiningSpeedMultiplier(): Float = ToolMaterials.NETHERITE.miningSpeedMultiplier + 1
     override fun getAttackDamage(): Float = ToolMaterials.NETHERITE.attackDamage + 1
     override fun getInverseTag(): TagKey<Block?>? {
-        TODO("Not yet implemented")
+        // blocks requiring a higher mining level
+        return BlockTags.AIR
     }
-
-    //    override fun getMiningLevel(): Int = ToolMaterials.NETHERITE.miningLevel  // TODO: define mining level somewhere else
     override fun getEnchantability(): Int = ToolMaterials.NETHERITE.enchantability + 1
     override fun getRepairIngredient(): Ingredient = Ingredient.ofItems(titaniumIngot)
 }
