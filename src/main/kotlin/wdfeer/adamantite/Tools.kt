@@ -32,7 +32,7 @@ fun initTools() {
 }
 
 // Adamantite Tools
-private val adamantiteToolMaterial = object : ToolMaterial {
+private object AdamantiteToolMaterial : ToolMaterial {
     override fun getDurability(): Int = ToolMaterials.NETHERITE.durability
     override fun getMiningSpeedMultiplier(): Float = ToolMaterials.NETHERITE.miningSpeedMultiplier + 1
     override fun getAttackDamage(): Float = ToolMaterials.NETHERITE.attackDamage + 1
@@ -43,15 +43,16 @@ private val adamantiteToolMaterial = object : ToolMaterial {
     override fun getEnchantability(): Int = ToolMaterials.NETHERITE.enchantability + 1
     override fun getRepairIngredient(): Ingredient = Ingredient.ofItems(adamantiteIngot)
 }
-val adamantiteSword = SwordItem(adamantiteToolMaterial, Item.Settings()).register("adamantite_sword")
-val adamantiteShovel = ShovelItem(adamantiteToolMaterial, Item.Settings()).register("adamantite_shovel")
-val adamantitePickaxe = PickaxeItem(adamantiteToolMaterial, Item.Settings()).register("adamantite_pickaxe")
-val adamantiteAxe = AxeItem(adamantiteToolMaterial, Item.Settings()).register("adamantite_axe")
-val adamantiteHoe = HoeItem(adamantiteToolMaterial, Item.Settings()).register("adamantite_hoe")
+// FIXME: no attributes like dmg, mining speed!!!
+val adamantiteSword = SwordItem(AdamantiteToolMaterial, Item.Settings()).register("adamantite_sword")
+val adamantiteShovel = ShovelItem(AdamantiteToolMaterial, Item.Settings()).register("adamantite_shovel")
+val adamantitePickaxe = PickaxeItem(AdamantiteToolMaterial, Item.Settings()).register("adamantite_pickaxe")
+val adamantiteAxe = AxeItem(AdamantiteToolMaterial, Item.Settings()).register("adamantite_axe")
+val adamantiteHoe = HoeItem(AdamantiteToolMaterial, Item.Settings()).register("adamantite_hoe")
 
 
 // Titanium Tools
-private val titaniumToolMaterial = object : ToolMaterial {
+private object TitaniumToolMaterial : ToolMaterial {
     override fun getDurability(): Int = ToolMaterials.NETHERITE.durability
     override fun getMiningSpeedMultiplier(): Float = ToolMaterials.NETHERITE.miningSpeedMultiplier + 1
     override fun getAttackDamage(): Float = ToolMaterials.NETHERITE.attackDamage + 1
@@ -62,8 +63,9 @@ private val titaniumToolMaterial = object : ToolMaterial {
     override fun getEnchantability(): Int = ToolMaterials.NETHERITE.enchantability + 1
     override fun getRepairIngredient(): Ingredient = Ingredient.ofItems(titaniumIngot)
 }
-val titaniumSword = SwordItem(titaniumToolMaterial, Item.Settings()).register("titanium_sword")
-val titaniumShovel = ShovelItem(titaniumToolMaterial, Item.Settings()).register("titanium_shovel")
-val titaniumPickaxe = PickaxeItem(titaniumToolMaterial, Item.Settings()).register("titanium_pickaxe")
-val titaniumAxe = AxeItem(titaniumToolMaterial, Item.Settings()).register("titanium_axe")
-val titaniumHoe = HoeItem(titaniumToolMaterial, Item.Settings()).register("titanium_hoe")
+// FIXME: no attributes like dmg, mining speed!!!
+val titaniumSword = SwordItem(TitaniumToolMaterial, Item.Settings()).register("titanium_sword")
+val titaniumShovel = ShovelItem(TitaniumToolMaterial, Item.Settings()).register("titanium_shovel")
+val titaniumPickaxe = PickaxeItem(TitaniumToolMaterial, Item.Settings()).register("titanium_pickaxe")
+val titaniumAxe = AxeItem(TitaniumToolMaterial, Item.Settings()).register("titanium_axe")
+val titaniumHoe = HoeItem(TitaniumToolMaterial, Item.Settings()).register("titanium_hoe")

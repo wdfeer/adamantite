@@ -26,6 +26,7 @@ private val adamantite = registerMaterial(
     ArmorMaterials.NETHERITE.value().toughness + 1,
     ArmorMaterials.NETHERITE.value().knockbackResistance
 )
+// FIXME: 64-stackable and overlay texture not found!
 val adamantiteHelmet = ArmorItem(adamantite, ArmorItem.Type.HELMET, Item.Settings()).register("adamantite_helmet")
 val adamantiteChestplate = ArmorItem(
     adamantite, ArmorItem.Type.CHESTPLATE, Item.Settings()
@@ -43,6 +44,7 @@ private val titanium = registerMaterial(
     ArmorMaterials.NETHERITE.value().toughness + 1,
     ArmorMaterials.NETHERITE.value().knockbackResistance
 )
+// FIXME: 64-stackable and overlay texture not found!
 val titaniumHelmet =
     ArmorItem(titanium, ArmorItem.Type.HELMET, Item.Settings()).register("titanium_helmet")
 val titaniumChestplate = ArmorItem(
