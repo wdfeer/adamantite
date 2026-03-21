@@ -31,7 +31,8 @@ fun initTools() {
     }
 }
 
-// Adamantite Tools
+// === Adamantite Tools ===
+
 private object AdamantiteToolMaterial : ToolMaterial {
     override fun getDurability(): Int = ToolMaterials.NETHERITE.durability
     override fun getMiningSpeedMultiplier(): Float = ToolMaterials.NETHERITE.miningSpeedMultiplier + 1
@@ -40,18 +41,68 @@ private object AdamantiteToolMaterial : ToolMaterial {
         // blocks requiring a higher mining level
         return BlockTags.INCORRECT_FOR_NETHERITE_TOOL
     }
+
     override fun getEnchantability(): Int = ToolMaterials.NETHERITE.enchantability + 1
     override fun getRepairIngredient(): Ingredient = Ingredient.ofItems(adamantiteIngot)
 }
-// FIXME: no attributes like dmg, mining speed!!!
-val adamantiteSword = SwordItem(AdamantiteToolMaterial, Item.Settings()).register("adamantite_sword")
-val adamantiteShovel = ShovelItem(AdamantiteToolMaterial, Item.Settings()).register("adamantite_shovel")
-val adamantitePickaxe = PickaxeItem(AdamantiteToolMaterial, Item.Settings()).register("adamantite_pickaxe")
-val adamantiteAxe = AxeItem(AdamantiteToolMaterial, Item.Settings()).register("adamantite_axe")
-val adamantiteHoe = HoeItem(AdamantiteToolMaterial, Item.Settings()).register("adamantite_hoe")
 
+val adamantiteSword = SwordItem(
+    AdamantiteToolMaterial,
+    Item.Settings().attributeModifiers(
+        SwordItem.createAttributeModifiers(
+            AdamantiteToolMaterial,
+            3,
+            -2.4f
+        )
+    )
+).register("adamantite_sword")
 
-// Titanium Tools
+val adamantiteShovel = ShovelItem(
+    AdamantiteToolMaterial,
+    Item.Settings().attributeModifiers(
+        ShovelItem.createAttributeModifiers(
+            AdamantiteToolMaterial,
+            1.5f,
+            -3f
+        )
+    )
+).register("adamantite_shovel")
+
+val adamantitePickaxe = PickaxeItem(
+    AdamantiteToolMaterial,
+    Item.Settings().attributeModifiers(
+        PickaxeItem.createAttributeModifiers(
+            AdamantiteToolMaterial,
+            1f,
+            -2.8f
+        )
+    )
+).register("adamantite_pickaxe")
+
+val adamantiteAxe = AxeItem(
+    AdamantiteToolMaterial,
+    Item.Settings().attributeModifiers(
+        AxeItem.createAttributeModifiers(
+            AdamantiteToolMaterial,
+            5f,
+            -3f
+        )
+    )
+).register("adamantite_axe")
+
+val adamantiteHoe = HoeItem(
+    AdamantiteToolMaterial,
+    Item.Settings().attributeModifiers(
+        HoeItem.createAttributeModifiers(
+            AdamantiteToolMaterial,
+            -4f,
+            0f
+        )
+    )
+).register("adamantite_hoe")
+
+// === Titanium Tools ===
+
 private object TitaniumToolMaterial : ToolMaterial {
     override fun getDurability(): Int = ToolMaterials.NETHERITE.durability
     override fun getMiningSpeedMultiplier(): Float = ToolMaterials.NETHERITE.miningSpeedMultiplier + 1
@@ -60,12 +111,62 @@ private object TitaniumToolMaterial : ToolMaterial {
         // blocks requiring a higher mining level
         return BlockTags.INCORRECT_FOR_NETHERITE_TOOL
     }
+
     override fun getEnchantability(): Int = ToolMaterials.NETHERITE.enchantability + 1
     override fun getRepairIngredient(): Ingredient = Ingredient.ofItems(titaniumIngot)
 }
-// FIXME: no attributes like dmg, mining speed!!!
-val titaniumSword = SwordItem(TitaniumToolMaterial, Item.Settings()).register("titanium_sword")
-val titaniumShovel = ShovelItem(TitaniumToolMaterial, Item.Settings()).register("titanium_shovel")
-val titaniumPickaxe = PickaxeItem(TitaniumToolMaterial, Item.Settings()).register("titanium_pickaxe")
-val titaniumAxe = AxeItem(TitaniumToolMaterial, Item.Settings()).register("titanium_axe")
-val titaniumHoe = HoeItem(TitaniumToolMaterial, Item.Settings()).register("titanium_hoe")
+
+val titaniumSword = SwordItem(
+    TitaniumToolMaterial,
+    Item.Settings().attributeModifiers(
+        SwordItem.createAttributeModifiers(
+            TitaniumToolMaterial,
+            3,
+            -2.4f
+        )
+    )
+).register("titanium_sword")
+
+val titaniumShovel = ShovelItem(
+    TitaniumToolMaterial,
+    Item.Settings().attributeModifiers(
+        ShovelItem.createAttributeModifiers(
+            TitaniumToolMaterial,
+            1.5f,
+            -3f
+        )
+    )
+).register("titanium_shovel")
+
+val titaniumPickaxe = PickaxeItem(
+    TitaniumToolMaterial,
+    Item.Settings().attributeModifiers(
+        PickaxeItem.createAttributeModifiers(
+            TitaniumToolMaterial,
+            1f,
+            -2.8f
+        )
+    )
+).register("titanium_pickaxe")
+
+val titaniumAxe = AxeItem(
+    TitaniumToolMaterial,
+    Item.Settings().attributeModifiers(
+        AxeItem.createAttributeModifiers(
+            TitaniumToolMaterial,
+            5f,
+            -3f
+        )
+    )
+).register("titanium_axe")
+
+val titaniumHoe = HoeItem(
+    TitaniumToolMaterial,
+    Item.Settings().attributeModifiers(
+        HoeItem.createAttributeModifiers(
+            TitaniumToolMaterial,
+            -4f,
+            0f
+        )
+    )
+).register("titanium_hoe")

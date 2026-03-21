@@ -5,7 +5,6 @@ import net.minecraft.item.ArmorMaterial
 import net.minecraft.item.ArmorMaterial.*
 import net.minecraft.item.ArmorMaterials
 import net.minecraft.item.Item
-import net.minecraft.item.Items
 import net.minecraft.recipe.Ingredient
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
@@ -25,6 +24,8 @@ private fun armorItem(material: RegistryEntry<ArmorMaterial>, type: ArmorItem.Ty
     )
 
 // === Adamantite Armor ===
+
+// FIXME: ARMOR NOT ENCHANTABLE
 
 private val adamantite = registerMaterial(
     "adamantite",
