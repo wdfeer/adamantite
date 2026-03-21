@@ -53,6 +53,7 @@ fun initItems() {
         content.add(titaniumUpgradeTemplate)
     }
 
+    initArmor()
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register { content: FabricItemGroupEntries ->
         content.add(adamantiteSword)
         content.add(adamantiteHelmet)
@@ -66,16 +67,6 @@ fun initItems() {
         content.add(titaniumBoots)
     }
 
-    ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register { content: FabricItemGroupEntries ->
-        content.add(adamantiteShovel)
-        content.add(adamantitePickaxe)
-        content.add(adamantiteAxe)
-        content.add(adamantiteHoe)
-        content.add(titaniumShovel)
-        content.add(titaniumPickaxe)
-        content.add(titaniumAxe)
-        content.add(titaniumHoe)
-    }
-
+    initTools()
     initCrossbows()
 }

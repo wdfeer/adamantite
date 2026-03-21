@@ -1,9 +1,12 @@
 package wdfeer.adamantite
 
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
 import net.minecraft.block.Block
 import net.minecraft.item.AxeItem
 import net.minecraft.item.HoeItem
 import net.minecraft.item.Item
+import net.minecraft.item.ItemGroups
 import net.minecraft.item.PickaxeItem
 import net.minecraft.item.ShovelItem
 import net.minecraft.item.SwordItem
@@ -11,6 +14,21 @@ import net.minecraft.item.ToolMaterial
 import net.minecraft.item.ToolMaterials
 import net.minecraft.recipe.Ingredient
 import net.minecraft.registry.tag.TagKey
+
+fun initTools() {
+    // also required, to init this file!
+
+    ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register { content: FabricItemGroupEntries ->
+        content.add(adamantiteShovel)
+        content.add(adamantitePickaxe)
+        content.add(adamantiteAxe)
+        content.add(adamantiteHoe)
+        content.add(titaniumShovel)
+        content.add(titaniumPickaxe)
+        content.add(titaniumAxe)
+        content.add(titaniumHoe)
+    }
+}
 
 // Adamantite Tools
 private val adamantiteToolMaterial = object : ToolMaterial {

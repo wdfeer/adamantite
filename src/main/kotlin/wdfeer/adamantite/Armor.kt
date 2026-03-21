@@ -13,6 +13,7 @@ import net.minecraft.sound.SoundEvent
 import net.minecraft.sound.SoundEvents
 import java.util.function.Supplier
 
+fun initArmor() = Unit // inits this file
 
 // === Adamantite Armor ===
 
@@ -51,7 +52,7 @@ val titaniumLeggings =
     ArmorItem(titanium, ArmorItem.Type.LEGGINGS, Item.Settings()).register("titanium_leggings")
 val titaniumBoots = ArmorItem(titanium, ArmorItem.Type.BOOTS, Item.Settings()).register("titanium_boots")
 
-fun registerMaterial(
+private fun registerMaterial(
     id: String,
     defensePoints: MutableMap<ArmorItem.Type, Int>,
     enchantability: Int,
