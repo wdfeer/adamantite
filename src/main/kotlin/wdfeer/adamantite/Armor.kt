@@ -25,8 +25,6 @@ private fun armorItem(material: RegistryEntry<ArmorMaterial>, type: ArmorItem.Ty
 
 // === Adamantite Armor ===
 
-// FIXME: ARMOR NOT ENCHANTABLE
-
 private val adamantite = registerMaterial(
     "adamantite",
     ArmorMaterials.NETHERITE.value().defense,

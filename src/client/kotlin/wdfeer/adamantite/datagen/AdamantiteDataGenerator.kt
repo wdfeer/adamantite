@@ -103,21 +103,26 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                     getTagBuilder(ItemTags.AXES).add(Adamantite.id("adamantite_axe"))
                     getTagBuilder(ItemTags.HOES).add(Adamantite.id("adamantite_hoe"))
 
-                    getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("adamantite_helmet"))
-                    getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("adamantite_chestplate"))
-                    getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("adamantite_leggings"))
-                    getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("adamantite_boots"))
+                    listOf(
+                        getTagBuilder(ItemTags.ARMOR_ENCHANTABLE),
+                        getTagBuilder(ItemTags.TRIMMABLE_ARMOR)
+                    ).forEach {
+                        it.add(Adamantite.id("adamantite_helmet"))
+                        it.add(Adamantite.id("adamantite_chestplate"))
+                        it.add(Adamantite.id("adamantite_leggings"))
+                        it.add(Adamantite.id("adamantite_boots"))
+
+                        it.add(Adamantite.id("titanium_helmet"))
+                        it.add(Adamantite.id("titanium_chestplate"))
+                        it.add(Adamantite.id("titanium_leggings"))
+                        it.add(Adamantite.id("titanium_boots"))
+                    }
 
                     getTagBuilder(ItemTags.SWORDS).add(Adamantite.id("titanium_sword"))
                     getTagBuilder(ItemTags.SHOVELS).add(Adamantite.id("titanium_shovel"))
                     getTagBuilder(ItemTags.PICKAXES).add(Adamantite.id("titanium_pickaxe"))
                     getTagBuilder(ItemTags.AXES).add(Adamantite.id("titanium_axe"))
                     getTagBuilder(ItemTags.HOES).add(Adamantite.id("titanium_hoe"))
-
-                    getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("titanium_helmet"))
-                    getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("titanium_chestplate"))
-                    getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("titanium_leggings"))
-                    getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("titanium_boots"))
 
                     getTagBuilder(ItemTags.CROSSBOW_ENCHANTABLE).add(Adamantite.id("adamantite_crossbow"))
                     getTagBuilder(ItemTags.CROSSBOW_ENCHANTABLE).add(Adamantite.id("titanium_crossbow"))
