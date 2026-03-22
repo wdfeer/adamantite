@@ -21,6 +21,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
     override fun onInitializeDataGenerator(generator: FabricDataGenerator) {
         val pack = generator.createPack()
 
+        // block loot tables
         pack.addProvider { dataOutput, lookup ->
             object : FabricBlockLootTableProvider(dataOutput, lookup) {
                 override fun generate() {
@@ -32,6 +33,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
             }
         }
 
+        // models
         pack.addProvider { dataOutput, _ ->
             object : FabricModelProvider(dataOutput) {
                 override fun generateBlockStateModels(generator: BlockStateModelGenerator) {
@@ -71,8 +73,10 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
             }
         }
 
+        // recipes
         pack.addProvider { dataOutput, lookup -> RecipeProvider(dataOutput, lookup) }
 
+        // block tags
         pack.addProvider { dataOutput, registriesFuture ->
             object : FabricTagProvider<Block>(dataOutput, RegistryKeys.BLOCK, registriesFuture) {
                 override fun configure(lookup: RegistryWrapper.WrapperLookup?) {
@@ -89,6 +93,7 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
             }
         }
 
+        // item tags
         pack.addProvider { dataOutput, registriesFuture ->
             object : FabricTagProvider<Item>(dataOutput, RegistryKeys.ITEM, registriesFuture) {
                 override fun configure(lookup: RegistryWrapper.WrapperLookup?) {
@@ -113,6 +118,9 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
                     getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("titanium_chestplate"))
                     getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("titanium_leggings"))
                     getTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(Adamantite.id("titanium_boots"))
+
+                    getTagBuilder(ItemTags.CROSSBOW_ENCHANTABLE).add(Adamantite.id("adamantite_crossbow"))
+                    getTagBuilder(ItemTags.CROSSBOW_ENCHANTABLE).add(Adamantite.id("titanium_crossbow"))
                 }
             }
         }

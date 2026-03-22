@@ -9,8 +9,6 @@ import net.minecraft.item.Item
 import net.minecraft.item.ItemGroups
 import net.minecraft.recipe.Ingredient
 
-// FIXME: CROSSBOWS NOT ENCHANTABLE
-
 // only assign crossbows on init, if ranged_weapon_api loaded
 var adamantiteCrossbow: Item? = null
 var titaniumCrossbow: Item? = null
