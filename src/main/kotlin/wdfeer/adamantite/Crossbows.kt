@@ -9,6 +9,8 @@ import net.minecraft.item.Item
 import net.minecraft.item.ItemGroups
 import net.minecraft.recipe.Ingredient
 
+// FIXME: CROSSBOWS NOT ENCHANTABLE
+
 // only assign crossbows on init, if ranged_weapon_api loaded
 var adamantiteCrossbow: Item? = null
 var titaniumCrossbow: Item? = null
@@ -23,8 +25,7 @@ fun initCrossbows() {
         adamantiteCrossbow = CustomCrossbow(
             Item.Settings().maxCount(1).maxDamage(930), RangedConfig(
                 RangedConfig.CROSSBOW.damage,
-                // FIXME: -3.75 sec pull time
-                RangedConfig.CROSSBOW.pull_time_bonus - 5,
+                RangedConfig.CROSSBOW.pull_time_bonus - 0.25f,
                 RangedConfig.CROSSBOW.velocity_bonus
             )
         ) { Ingredient.ofItems(adamantiteIngot) }.register("adamantite_crossbow")
