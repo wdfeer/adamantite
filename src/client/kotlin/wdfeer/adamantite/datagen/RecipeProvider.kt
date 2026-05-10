@@ -51,27 +51,6 @@ class RecipeProvider(
             .offerTo(exporter, getItemPath(result) + "_smithing")
     }
 
-    private fun offerSmeltingBlasting(exporter: RecipeExporter, input: ItemConvertible, output: Item) {
-        offerSmelting(
-            exporter,
-            listOf(input),
-            RecipeCategory.MISC,
-            output,
-            1f,
-            300,
-            ""
-        )
-        offerBlasting(
-            exporter,
-            listOf(input),
-            RecipeCategory.MISC,
-            output,
-            1f,
-            300,
-            ""
-        )
-    }
-
     private fun offerChorusConversionRecipe(exporter: RecipeExporter, input: Item, output: Item) {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, output, 1)
             .input(input)
@@ -106,9 +85,6 @@ class RecipeProvider(
     }
 
     override fun generate(exporter: RecipeExporter) {
-        offerSmeltingBlasting(exporter, deepslateAdamantiteOre, adamantiteIngot)
-        offerSmeltingBlasting(exporter, deepslateTitaniumOre, titaniumIngot)
-
         offerSmithingTemplateCopyingRecipe(exporter, adamantiteUpgradeTemplate, Items.END_STONE)
         offerSmithingTemplateCopyingRecipe(exporter, titaniumUpgradeTemplate, Items.COBBLED_DEEPSLATE)
 

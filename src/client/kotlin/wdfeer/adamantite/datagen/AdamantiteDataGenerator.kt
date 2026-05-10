@@ -25,8 +25,8 @@ object AdamantiteDataGenerator : DataGeneratorEntrypoint {
         pack.addProvider { dataOutput, lookup ->
             object : FabricBlockLootTableProvider(dataOutput, lookup) {
                 override fun generate() {
-                    addDrop(deepslateAdamantiteOre, deepslateAdamantiteOre)
-                    addDrop(deepslateTitaniumOre, deepslateTitaniumOre)
+                    addDrop(deepslateAdamantiteOre, adamantiteNugget)
+                    addDrop(deepslateTitaniumOre, titaniumNugget)
                     addDrop(adamantiteBlock, adamantiteBlock)
                     addDrop(titaniumBlock, titaniumBlock)
                 }
