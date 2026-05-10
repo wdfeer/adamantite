@@ -2,7 +2,6 @@ package wdfeer.adamantite.datagen
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider
@@ -17,21 +16,13 @@ import net.minecraft.registry.tag.BlockTags
 import net.minecraft.registry.tag.ItemTags
 import wdfeer.adamantite.*
 
+
 object AdamantiteDataGenerator : DataGeneratorEntrypoint {
     override fun onInitializeDataGenerator(generator: FabricDataGenerator) {
         val pack = generator.createPack()
 
         // block loot tables
-        pack.addProvider { dataOutput, lookup ->
-            object : FabricBlockLootTableProvider(dataOutput, lookup) {
-                override fun generate() {
-                    addDrop(deepslateAdamantiteOre, adamantiteNugget)
-                    addDrop(deepslateTitaniumOre, titaniumNugget)
-                    addDrop(adamantiteBlock, adamantiteBlock)
-                    addDrop(titaniumBlock, titaniumBlock)
-                }
-            }
-        }
+        pack.addProvider(::BlockLootTableProvider)
 
         // models
         pack.addProvider { dataOutput, _ ->
