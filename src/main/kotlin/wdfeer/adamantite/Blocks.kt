@@ -5,17 +5,21 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
 import net.minecraft.block.AbstractBlock
 import net.minecraft.block.Block
 import net.minecraft.block.Blocks
+import net.minecraft.block.ExperienceDroppingBlock
 import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemGroups
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
+import net.minecraft.util.math.intprovider.UniformIntProvider
 
-val deepslateAdamantiteOre = Block(
+val deepslateAdamantiteOre = ExperienceDroppingBlock(
+    UniformIntProvider.create(3, 7), // same as diamond ore
     AbstractBlock.Settings.create().hardness(Blocks.DEEPSLATE_DIAMOND_ORE.hardness)
 ).register("deepslate_adamantite_ore")
 
-val deepslateTitaniumOre = Block(
+val deepslateTitaniumOre = ExperienceDroppingBlock(
+    UniformIntProvider.create(3, 7), // same as diamond ore
     AbstractBlock.Settings.create().hardness(Blocks.DEEPSLATE_DIAMOND_ORE.hardness)
 ).register("deepslate_titanium_ore")
 
