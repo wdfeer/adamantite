@@ -1,10 +1,9 @@
 package wdfeer.adamantite
 
-import net.minecraft.item.ArmorItem
-import net.minecraft.item.ArmorMaterial
-import net.minecraft.item.ArmorMaterial.*
-import net.minecraft.item.ArmorMaterials
 import net.minecraft.item.Item
+import net.minecraft.item.equipment.ArmorMaterial
+import net.minecraft.item.equipment.ArmorMaterials
+import net.minecraft.item.equipment.EquipmentType
 import net.minecraft.recipe.Ingredient
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
@@ -16,23 +15,25 @@ import java.util.function.Supplier
 fun initArmor() = Unit // inits this file
 
 private const val maxDamageMultiplier = 37 // same as netherite
-private fun armorItem(material: RegistryEntry<ArmorMaterial>, type: ArmorItem.Type): ArmorItem =
-    ArmorItem(
-        material, type, Item.Settings().maxDamage(
-            type.getMaxDamage(maxDamageMultiplier)
-        )
+
+private fun armorItem(material: ArmorMaterial, type: EquipmentType): Item = Item(
+    Item.Settings().armor(
+        material, type
+    ).maxDamage(
+        type.getMaxDamage(maxDamageMultiplier)
     )
+)
 
 // === Adamantite Armor ===
 
 private val adamantite = registerMaterial(
     "adamantite",
-    ArmorMaterials.NETHERITE.value().defense,
-    ArmorMaterials.NETHERITE.value().enchantability + 1,
+    ArmorMaterials.NETHERITE.defense,
+    ArmorMaterials.NETHERITE.enchantmentValue + 1,
     SoundEvents.ITEM_ARMOR_EQUIP_IRON,
     { Ingredient.ofItems(adamantiteIngot) },
-    ArmorMaterials.NETHERITE.value().toughness + 1,
-    ArmorMaterials.NETHERITE.value().knockbackResistance
+    ArmorMaterials.NETHERITE.toughness + 1,
+    ArmorMaterials.NETHERITE.knockbackResistance
 )
 
 val adamantiteHelmet = armorItem(adamantite, ArmorItem.Type.HELMET).register("adamantite_helmet")
@@ -51,13 +52,11 @@ private val titanium = registerMaterial(
     ArmorMaterials.NETHERITE.value().knockbackResistance
 )
 
-val titaniumHelmet =
-    armorItem(titanium, ArmorItem.Type.HELMET).register("titanium_helmet")
+val titaniumHelmet = armorItem(titanium, ArmorItem.Type.HELMET).register("titanium_helmet")
 val titaniumChestplate = armorItem(
     titanium, ArmorItem.Type.CHESTPLATE
 ).register("titanium_chestplate")
-val titaniumLeggings =
-    armorItem(titanium, ArmorItem.Type.LEGGINGS).register("titanium_leggings")
+val titaniumLeggings = armorItem(titanium, ArmorItem.Type.LEGGINGS).register("titanium_leggings")
 val titaniumBoots = armorItem(titanium, ArmorItem.Type.BOOTS).register("titanium_boots")
 
 private fun registerMaterial(
